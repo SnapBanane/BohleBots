@@ -7,24 +7,79 @@
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="3" type="long" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
   </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="1v1 Soccer Lightweight 2024-2025" targetName="PlatformIO" />
+      <config projectName="BohleBots" targetName="PlatformIO" />
     </generated>
   </component>
-  <component name="CMakeSettings">
-    <configurations>
-      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
-    </configurations>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ab1e647-e906-4a51-9b5a-71bfbc6fc0c0" name="Changes" comment="First Commit" />
+    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/.sconsign311.dblite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/Esp.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/FunctionalInterrupt.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/HardwareSerial.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/IPAddress.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/IPv6Address.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/MD5Builder.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/Print.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/Stream.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/StreamString.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/WMath.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/WString.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/base64.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/cbuf.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-adc.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-bt.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-cpu.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-dac.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-gpio.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-i2c.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-ledc.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-log.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-matrix.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-misc.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-psram.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-rmt.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-sigmadelta.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-spi.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-time.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-timer.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-touch.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-uart.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/libb64/cdecode.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/libb64/cencode.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/stdlib_noniso.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/wiring_pulse.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/wiring_shift.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/firmware.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/firmware.elf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/idedata.json" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/esp32dev/idedata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/lib1ad/Wire/Wire.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/lib1ad/libWire.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libFrameworkArduino.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libFrameworkArduinoVariant.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libc88/Arduino-PID-Library-master/PID_v1.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libc88/libArduino-PID-Library-master.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libedc/ESP32-LEDC-master/LED_ESP32.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libedc/libESP32-LEDC-master.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/partitions.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/src/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/unity_config/unity_config.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/unity_config/unity_config.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/c_cpp_properties.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,27 +95,34 @@
     </projectState>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SnapBanane&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SnapBanane/BohleBots.git&quot;,
+    &quot;accountId&quot;: &quot;f2b9834f-8d29-4f74-8bf6-5d16b7d1f769&quot;
+  }
+}</component>
   <component name="PlatformioLocalSettings">
     <option name="availableProjects">
       <map>
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="1v1 Soccer Lightweight 2024-2025" />
+              <option name="name" value="BohleBots" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="1v1 Soccer Lightweight 2024-2025" />
+                <option name="name" value="BohleBots" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
             </list>
@@ -77,14 +139,13 @@
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2024" />
-    <option name="minorVersion" value="3" />
+    <option name="minorVersion" value="2.3" />
     <option name="productBranch" value="Classic" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="2oqqWbAzxhuKqTKbLffbYtNL6wg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2ozhXLZWVVUSSrMYcsT9g1HdfTO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -97,79 +158,44 @@
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;root&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Julius/Documents/PlatformIO/Projects/1v1 Soccer Lightweight 2024-2025&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/include" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/test" />
-    </key>
-  </component>
   <component name="RunManager">
-    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1v1 Soccer Lightweight 2024-2025" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
     </configuration>
-    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="1v1 Soccer Lightweight 2024-2025" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0ab1e647-e906-4a51-9b5a-71bfbc6fc0c0" name="Changes" comment="" />
-      <created>1713815359667</created>
+      <changelist id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="" />
+      <created>1731878350070</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713815359667</updated>
-      <workItem from="1731607486563" duration="493000" />
-      <workItem from="1731608018766" duration="599000" />
-      <workItem from="1731671738075" duration="48000" />
-      <workItem from="1731875175841" duration="462000" />
-      <workItem from="1731875661409" duration="1336000" />
+      <updated>1731878350070</updated>
+      <workItem from="1731878352313" duration="176000" />
+      <workItem from="1731878561924" duration="145000" />
+      <workItem from="1731963858700" duration="14000" />
     </task>
-    <task id="LOCAL-00001" summary="First Commit">
-      <option name="closed" value="true" />
-      <created>1731875870919</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1731875870919</updated>
-    </task>
-    <task id="LOCAL-00002" summary="First Commit">
-      <option name="closed" value="true" />
-      <created>1731876010367</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1731876010367</updated>
-    </task>
-    <task id="LOCAL-00003" summary="First Commit">
-      <option name="closed" value="true" />
-      <created>1731876808733</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1731876808733</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="First Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

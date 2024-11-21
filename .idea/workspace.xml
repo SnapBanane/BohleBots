@@ -7,8 +7,8 @@
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="3" type="long" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="5" type="long" />
   </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
@@ -18,67 +18,54 @@
       <config projectName="BohleBots" targetName="PlatformIO" />
     </generated>
   </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="Commit 2">
+      <change afterPath="$PROJECT_DIR$/lib/Wire/Wire.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Wire/Wire.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/.sconsign311.dblite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/Esp.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/FunctionalInterrupt.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/HardwareSerial.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/IPAddress.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/IPv6Address.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/MD5Builder.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/Print.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/Stream.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/StreamString.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/WMath.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/WString.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/base64.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/cbuf.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-adc.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-bt.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-cpu.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-dac.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-gpio.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-i2c.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-ledc.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-log.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-matrix.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-misc.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-psram.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-rmt.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-sigmadelta.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-spi.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-time.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-timer.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-touch.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/esp32-hal-uart.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/libb64/cdecode.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/libb64/cencode.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/stdlib_noniso.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/wiring_pulse.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/FrameworkArduino/wiring_shift.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/firmware.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/firmware.elf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/idedata.json" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/esp32dev/idedata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/lib1ad/Wire/Wire.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/lib1ad/libWire.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libFrameworkArduino.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libFrameworkArduinoVariant.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libc88/Arduino-PID-Library-master/PID_v1.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libc88/libArduino-PID-Library-master.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libedc/ESP32-LEDC-master/LED_ESP32.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/libedc/libESP32-LEDC-master.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/partitions.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/src/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/unity_config/unity_config.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/unity_config/unity_config.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/esp32dev/idedata.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/c_cpp_properties.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/integrity.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/integrity.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_hello_world/ccc_hello_world.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_hello_world/ccc_hello_world.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_i2c_uart/ccc_i2c_uart.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_i2c_uart/ccc_i2c_uart.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_pantilt/PIDLoop.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_pantilt/PIDLoop.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_pantilt/ccc_pantilt.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/ccc_pantilt/ccc_pantilt.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/line_get_all/line_get_all.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/line_get_all/line_get_all.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/line_hello_world/line_hello_world.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/line_hello_world/line_hello_world.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/include/README" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/include/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/lib/README" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/lib/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/platformio.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/test/README" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/platform_io_test_pixy/test/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/test_other_functions/test_other_functions.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/test_other_functions/test_other_functions.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/test_pixy/test_pixy.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/test_pixy/test_pixy.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/video_get_rgb/video_get_rgb.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/examples/video_get_rgb/video_get_rgb.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/library.json" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/library.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2CCC.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2CCC.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2I2C.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2I2C.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2Line.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2Line.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2SPI_SS.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2SPI_SS.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2UART.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2UART.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2Video.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/Pixy2Video.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/TPixy2.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/esp32dev/pixy2/src/TPixy2.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/bohlebots.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/bohlebots.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ESP32-LEDC-master/LED_ESP32.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ESP32-LEDC-master/LED_ESP32.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ESP32-LEDC-master/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +123,9 @@
       </map>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2024" />
@@ -150,25 +140,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "PlatformIO.PlatformIO.executor": "Run",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.advertisement.text.has.clang-format": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Julius/CLionProjects/BohleBots/lib/Wire",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
@@ -187,12 +191,31 @@
       <updated>1731878350070</updated>
       <workItem from="1731878352313" duration="176000" />
       <workItem from="1731878561924" duration="145000" />
-      <workItem from="1731963858700" duration="14000" />
+      <workItem from="1731963858700" duration="237000" />
+      <workItem from="1732202795230" duration="313000" />
+      <workItem from="1732205012488" duration="377000" />
+      <workItem from="1732208623330" duration="1438000" />
+      <workItem from="1732210287619" duration="1775000" />
+      <workItem from="1732212492287" duration="263000" />
+      <workItem from="1732213814123" duration="4256000" />
     </task>
+    <task id="LOCAL-00001" summary="Commit 2">
+      <option name="closed" value="true" />
+      <created>1731963944670</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731963944670</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

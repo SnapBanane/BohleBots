@@ -140,8 +140,8 @@ void loop() {
     bot.boardled(2, BLAU);
 
     // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
-    bot.omnidrive(0, 0, -Output, 100);  // test for PID
-
+    // bot.omnidrive(0, 1, -Output, 100);  // test for PID
+    bot.fahre(1, 100, 0);
     /*
     if (bot.goalExists) {
       if (!bot.goalDistance <= 10) {
@@ -160,7 +160,8 @@ void loop() {
     */
     
     // Output for serial plotter (no text, just values)
-    Serial.println(goalDirection);
+    Serial.println(Output);
+    // Serial.println(goalDirection);
     // Serial.print(" ");
     // Serial.print(Setpoint);
     // Serial.print(" ");
@@ -168,7 +169,7 @@ void loop() {
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
-
+    /*
     if (Serial.available() > 0) {
       String input = Serial.readStringUntil('\n');
       input.trim();
@@ -185,10 +186,10 @@ void loop() {
         } else if (parameter == "Kd") {
           Kd = value;
         }
-
+        
         // Update PID controller with new values
         adjustRotation.SetTunings(Kp, Ki, Kd);
       }
-    }
+      */
   }
 }

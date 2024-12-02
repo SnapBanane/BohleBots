@@ -13,7 +13,7 @@ int modus = 0;
 const int MaxAngle_Drive = 5;
 int latest_ballDirection;
 double Setpoint, Input, Output;            // for PID
-double Kp = 0.2625, Ki = 0.3, Kd = 0.05;      // almost perfect || high battery
+double Kp = 0.15, Ki = 0.15, Kd = 0.0255;      // almost perfect || high battery
 double BSetpoint, BInput, BOutput;         // second PID
 double BKp = 0.4, BKi = 1.6, BKd = 0.150;  // almost perfect
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; 
@@ -97,7 +97,6 @@ void updateSensors() {
   goalDirection = bot.goalDirection;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void loop() {
   bot.warte(5);  // default delay || must be here for some reason
@@ -141,8 +140,8 @@ void loop() {
     bot.boardled(1, BLAU);  // Set LED
     bot.boardled(2, BLAU);
 
-    // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
-    bot.omnidrive(0, 0, -Output, 100);  // test for PID
+    bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
+    // bot.omnidrive(0, 0, -Output, 50);  // test for PID
     /*
     if (bot.goalExists) {
       if (!bot.goalDistance <= 10) {
@@ -161,7 +160,7 @@ void loop() {
     */
     
     // Output for serial plotter (no text, just values)
-    Serial.println(Output);
+    Serial.println(latest_compass);
     // Serial.println(goalDirection);
     // Serial.print(" ");
     // Serial.print(Setpoint);
@@ -173,7 +172,7 @@ void loop() {
     if (Serial.available() > 0) {
       String input = Serial.readStringUntil('\n');
       input.trim();
-      Ki = input.toFloat();
+      Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
   }

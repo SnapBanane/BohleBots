@@ -13,7 +13,7 @@ int modus = 0;
 const int MaxAngle_Drive = 5;
 int latest_ballDirection;
 double Setpoint, Input, Output;            // for PID
-double Kp = 0.25, Ki = 0, Kd = 0;      // almost perfect || high battery
+double Kp = 0.2625, Ki = 0.3, Kd = 0.05;      // almost perfect || high battery
 double BSetpoint, BInput, BOutput;         // second PID
 double BKp = 0.4, BKi = 1.6, BKd = 0.150;  // almost perfect
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; 
@@ -28,7 +28,7 @@ PID faceBall(&BInput, &BOutput, &BSetpoint, BKp, BKi, BKd, DIRECT);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
   // Serial connection
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Starting...");
 
   bot.set_bot_type(3);  // 3 wheels (omni robot)
@@ -83,7 +83,7 @@ void updateSensors() {
   adjustRotation.Compute();
   Input = latest_compass;
   // Input = goalDirection;
-  if (abs(Input) <= 8) {  // 8 degree toleranze
+  if (abs(Input) <= 8) {  // 8 degree tolerance
     Output = 0;
   }
 
@@ -96,6 +96,8 @@ void updateSensors() {
 
   goalDirection = bot.goalDirection;
 }
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void loop() {
   bot.warte(5);  // default delay || must be here for some reason
@@ -140,8 +142,7 @@ void loop() {
     bot.boardled(2, BLAU);
 
     // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
-    // bot.omnidrive(0, 1, -Output, 100);  // test for PID
-    bot.fahre(1, 100, 0);
+    bot.omnidrive(0, 0, -Output, 100);  // test for PID
     /*
     if (bot.goalExists) {
       if (!bot.goalDistance <= 10) {
@@ -169,27 +170,11 @@ void loop() {
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
-    /*
     if (Serial.available() > 0) {
       String input = Serial.readStringUntil('\n');
       input.trim();
-
-      int spaceIndex = input.indexOf(' ');
-      if (spaceIndex != -1) {
-        String parameter = input.substring(0, spaceIndex);
-        float value = input.substring(spaceIndex + 1).toFloat();
-
-        if (parameter == "Kp") {
-          Kp = value;
-        } else if (parameter == "Ki") {
-          Ki = value;
-        } else if (parameter == "Kd") {
-          Kd = value;
-        }
-        
-        // Update PID controller with new values
-        adjustRotation.SetTunings(Kp, Ki, Kd);
-      }
-      */
+      Ki = input.toFloat();
+      adjustRotation.SetTunings(Kp, Ki, Kd);
+    }
   }
 }

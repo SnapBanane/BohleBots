@@ -39,16 +39,79 @@ public:
   void getBall() {
     int x_vector;
     int y_vector;
-    int val = latest_ballDirection / 22.5;
+    int val = latest_ballDirection;
     switch(val)
     {
-      case -7:
-        y_vector = -4;
+      case 0: // 0 degrees
+        y_vector = 1;
+        x_vector = 0;
         break;
-
-
+      case 1: // ~10 degrees
+        y_vector = 0.5;
+        x_vector = 1;
+        break;
+      case 2: // ~25 degrees
+        y_vector = 0;
+        x_vector = 1;
+        break;
+      case 3: // ~45 degrees
+        y_vector = 0;
+        x_vector = 1;
+        break;
+      case 4: // ~90 degrees
+        y_vector = -1;
+        x_vector = 1;
+        break;
+      case 5: // ~120 degrees
+        y_vector = -2;
+        x_vector = 1;
+        break;
+      case 6: // ~150 degrees
+        y_vector = -3;
+        x_vector = 1;
+        break;
+      case 7: // ~170 degrees
+        y_vector = -4;
+        x_vector = 1;
+        break;
+      case -1: // ~-10 degrees
+        y_vector = 1;
+        x_vector = 1;
+        break;
+      case -2: // ~-25 degrees
+        y_vector = 1;
+        x_vector = 1;
+        break;
+      case -3: // ~-45 degrees
+        y_vector = 0;
+        x_vector = 1;
+        break;
+      case -4: // ~-90 degrees
+        y_vector = -1;
+        x_vector = 1;
+        break;
+      case -5: // ~-120 degrees
+        y_vector = -2;
+        x_vector = 1;
+        break;
+      case -6: // ~-150 degrees
+        y_vector = -3;
+        x_vector = 1;
+        break;
+      case -7: // ~-170 degrees
+        y_vector = -4;
+        x_vector = 1;
+        break;
+      case -8: // 180 degrees
+        y_vector = -5;
+        x_vector = 0;
+        break;
+    }
+    if (x_vector != 0) { // if the ball is not infront or behind chase the x direction of the ball
+      x_vector = get_x(latest_ballDirection);
     }
 
+    bot.omnidrive(x_vector, y_vector, -Output, 100); //apply the current vector to the robot
     /*
     if (latest_ballDirection != 0) {  // ball is not in front
       if (latest_ballDirection <= -130 || latest_ballDirection >= 130) {
@@ -78,7 +141,7 @@ public:
   void idle() {
     bot.omnidrive(0, 0, -Output, Speed);
     bot.boardled(1, AUS);
-    bot.warte(20);
+    bot.warte(40);
     bot.boardled(1, GELB);
   }
 

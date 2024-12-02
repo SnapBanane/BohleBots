@@ -286,14 +286,14 @@ public:
 
   int input(int number) {
     if (number == 1)
-      return (analogRead(INPUT1));
+      return analogRead(INPUT1);
     if (number == 2)
-      return (analogRead(INPUT2));
+      return analogRead(INPUT2);
     if (number == 3)
-      return (analogRead(INPUT3));
+      return analogRead(INPUT3);
     if (number == 4)
-      return (analogRead(INPUT4));
-    return 0;
+      return analogRead(INPUT4);
+    return 0; // Default return value for other cases
   }
 
   int kompass() {

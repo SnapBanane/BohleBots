@@ -20,6 +20,10 @@ double BKp = 0.4, BKi = 1.6, BKd = 0.150;  // almost perfect
 // double BKp = 0.4, BKi = 1.6, BKd = 0.150;  // save values || low battery
 int latest_compass;
 int goalDirection;
+// test variables below
+int angle = 0;
+int cycleCounter = 0;
+int SetpointMulti = 0;
 
 // Init PID
 PID adjustRotation(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
@@ -59,6 +63,7 @@ void check_buttons() {
   }
   if (bot.boardtast(2)) {
     modus = 3;
+    bot.setze_kompass();
   }
   if (bot.taster(1, 1)) {
     bot.my_signature = 1;
@@ -81,7 +86,7 @@ void check_buttons() {
 void updateSensors() {
   if (latest_compass != bot.kompass()) latest_compass = bot.kompass();
   adjustRotation.Compute();
-  Input = latest_compass;
+  Input = latest_compass + SetpointMulti;
   // Input = goalDirection;
   if (abs(Input) <= 8) {  // 8 degree tolerance
     Output = 0;
@@ -117,6 +122,7 @@ void loop() {
     bot.boardled(1, ROT);
     bot.boardled(2, ROT);
     bot.fahre(0, 0, 0);
+    bot.motor(4, 100);
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,8 +146,8 @@ void loop() {
     bot.boardled(1, BLAU);  // Set LED
     bot.boardled(2, BLAU);
 
-    bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
-    // bot.omnidrive(0, 0, -Output, 50);  // test for PID
+    // bot.omnidrive(controller.get_x(bot.ballDirection*22.5), controller.get_y(bot.ballDirection*22.5), -Output, 60);
+    bot.omnidrive(0, 0, -Output, 100);  // test for PID
     /*
     if (bot.goalExists) {
       if (!bot.goalDistance <= 10) {
@@ -150,7 +156,7 @@ void loop() {
         Serial.println(controller.get_x(goalDirection));
       }
     }
-    
+
 
     else {
       bot.boardled(1, ROT);
@@ -158,9 +164,20 @@ void loop() {
       bot.omnidrive(0, 0, -Output, 70);
     }
     */
-    
+    // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
+    //angle += 22.5;
+    //if (angle >= 180) angle = -180;
+    if (cycleCounter == 50) {
+      SetpointMulti += 90;
+      if (SetpointMulti > 180) SetpointMulti = -180;
+      adjustRotation.SetMode(SetpointMulti >= 0 ? DIRECT : REVERSE);
+      cycleCounter = 0;
+    } else {
+      cycleCounter += 1;
+    }
+
     // Output for serial plotter (no text, just values)
-    Serial.println(latest_compass);
+    // Serial.println(latest_compass);
     // Serial.println(goalDirection);
     // Serial.print(" ");
     // Serial.print(Setpoint);
@@ -169,6 +186,14 @@ void loop() {
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
+    Serial.print(controller.get_x(bot.ballDirection*22.5));
+    Serial.print(" : ");
+    Serial.println(controller.get_y(bot.ballDirection*22.5));
+    Serial.print(" : ");
+    Serial.println(Setpoint);
+    Serial.print(" : ");
+    Serial.println(cycleCounter);
+
     if (Serial.available() > 0) {
       String input = Serial.readStringUntil('\n');
       input.trim();

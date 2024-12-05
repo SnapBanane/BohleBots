@@ -129,6 +129,11 @@ public:
       bot.omnidrive(0, 1, -Output, Speed);
     }
     */
+    /*
+    Serial.print(x_vector);
+    Serial.print(" : ");
+    Serial.println(y_vector);
+    */
   }
 
   void attack() {

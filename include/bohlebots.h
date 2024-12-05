@@ -435,7 +435,7 @@ private:
         int ledwert = 255 - led1Array[lauf] - led2Array[lauf];
         Wire.beginTransmission(tastLedID[lauf]);
         Wire.write(ledwert);
-        ;
+
         Wire.endTransmission();
 
         Wire.requestFrom(tastLedID[lauf], 1);

@@ -93,8 +93,8 @@ void updateSensors() {
   }
 
   if (bot.ballExists == true) {  // update the ballDirection
-    if (latest_ballDirection != bot.ballDirection * 22.5) {
-      latest_ballDirection = bot.ballDirection * 22.5;
+    if (latest_ballDirection != bot.ballDirection) {
+      latest_ballDirection = bot.ballDirection;
     }
   }
   bot.syncSensors();  // sync all sensors
@@ -146,8 +146,9 @@ void loop() {
     bot.boardled(1, BLAU);  // Set LED
     bot.boardled(2, BLAU);
 
-    // bot.omnidrive(controller.get_x(bot.ballDirection*22.5), controller.get_y(bot.ballDirection*22.5), -Output, 60);
-    bot.omnidrive(0, 0, -Output, 100);  // test for PID
+    // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
+    // bot.omnidrive(0, 0, -Output, 100);  // test for PID
+    // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,40);
     /*
     if (bot.goalExists) {
       if (!bot.goalDistance <= 10) {
@@ -156,25 +157,16 @@ void loop() {
         Serial.println(controller.get_x(goalDirection));
       }
     }
-
-
     else {
       bot.boardled(1, ROT);
       Serial.println("Goal does not Exist");
       bot.omnidrive(0, 0, -Output, 70);
     }
     */
-    // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
+
+    //bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
     //angle += 22.5;
     //if (angle >= 180) angle = -180;
-    if (cycleCounter == 50) {
-      SetpointMulti += 90;
-      if (SetpointMulti > 180) SetpointMulti = -180;
-      adjustRotation.SetMode(SetpointMulti >= 0 ? DIRECT : REVERSE);
-      cycleCounter = 0;
-    } else {
-      cycleCounter += 1;
-    }
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
@@ -186,13 +178,13 @@ void loop() {
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
-    Serial.print(controller.get_x(bot.ballDirection*22.5));
-    Serial.print(" : ");
-    Serial.println(controller.get_y(bot.ballDirection*22.5));
-    Serial.print(" : ");
-    Serial.println(Setpoint);
-    Serial.print(" : ");
-    Serial.println(cycleCounter);
+    // Serial.print(controller.get_x(bot.ballDirection));
+    // Serial.print(" : ");
+    // Serial.println(controller.get_y(bot.ballDirection));
+    // Serial.print(" : ");
+    // Serial.println(Setpoint);
+    // Serial.print(" : ");
+    // Serial.println(cycleCounter);
 
     if (Serial.available() > 0) {
       String input = Serial.readStringUntil('\n');

@@ -459,8 +459,14 @@ private:
     if (Wire.available() == 2) {
       uint8_t rawDirection = Wire.read();
       ballDirection = (int8_t)rawDirection;
+      ballDirection = ballDirection * -22.5;
       uint8_t rawDistance = Wire.read();
       ballDistance = (int8_t)rawDistance;
+    }
+    if (ballDirection != 249) {
+      ballExists = true;
+    } else {
+      ballExists = false;
     }
 
     if (kompass_ena == true) {

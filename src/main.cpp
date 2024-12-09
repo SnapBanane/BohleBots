@@ -13,7 +13,7 @@ int modus = 0;
 const int MaxAngle_Drive = 5;
 int latest_ballDirection;
 double Setpoint, Input, Output;            // for PID
-double Kp = 0.15, Ki = 0.15, Kd = 0.0255;      // almost perfect || high battery
+double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // almost perfect || high battery
 double BSetpoint, BInput, BOutput;         // second PID
 double BKp = 0.4, BKi = 1.6, BKd = 0.150;  // almost perfect
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; 
@@ -60,6 +60,7 @@ void check_buttons() {
   }
   if (bot.boardtast(3)) {
     modus = 2;
+    bot.setze_kompass();
   }
   if (bot.boardtast(2)) {
     modus = 3;
@@ -131,12 +132,12 @@ void loop() {
 
     bot.boardled(1, GRUEN);
     bot.boardled(2, GRUEN);
-
+    /*
     Input = latest_compass;
     adjustRotation.Compute();
     BInput = latest_ballDirection;
     faceBall.Compute();
-
+    */
     controller.play();
   }
 
@@ -148,7 +149,7 @@ void loop() {
 
     // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
     // bot.omnidrive(0, 0, -Output, 100);  // test for PID
-    // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,40);
+    // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50);
     /*
     if (bot.goalExists) {
       if (!bot.goalDistance <= 10) {
@@ -177,7 +178,7 @@ void loop() {
     // Serial.println(latest_ballDirection);
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
-    // Serial.println(bot.lightgate);
+    Serial.println(bot.lightgate);
     // Serial.print(controller.get_x(bot.ballDirection));
     // Serial.print(" : ");
     // Serial.println(controller.get_y(bot.ballDirection));

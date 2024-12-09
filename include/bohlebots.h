@@ -477,7 +477,7 @@ private:
     }
 
     lightgate = input(1);
-    if (lightgate > 3500) {
+    if (lightgate > 2000) {
       hasBall = 1;
     } else hasBall = 0;
   }

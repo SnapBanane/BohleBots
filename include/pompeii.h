@@ -14,10 +14,10 @@ private:
 
 public:
   Controller(BohleBots& b)
-    : bot(b), latest_ballDirection(0), goalDirection(0), Output(0), Speed(80) {}
+    : bot(b), latest_ballDirection(0), goalDirection(0), Output(0), Speed(60) {}
 
   void play() {
-    if (!bot.ballExists || !bot.goalExists) {  // if nothing exists, idle
+    if (!bot.ballExists && !bot.goalExists) {  // if nothing exists, idle
       idle();
     }
     else if (bot.hasBall == 0) {  // drive to ball
@@ -28,90 +28,95 @@ public:
       attack();
       bot.boardled(1, GRUEN);
     }
-    else {  // do nothing and blink led :)
+    else {
+      // do nothing and blink led :)
       idle();
     }
-
-    Serial.println(latest_ballDirection);
 
   }
 
   void getBall() {
     int x_vector;
     int y_vector;
-    int val = latest_ballDirection;
+    int val = latest_ballDirection / 22.5;
     switch(val)
     {
       case 0: // 0 degrees
-        y_vector = 1;
+        y_vector = 2;
         x_vector = 0;
         break;
-      case 1: // ~10 degrees
-        y_vector = 0.5;
+      case 1: // ~22.5 degrees
+        y_vector = 1;
         x_vector = 1;
         break;
-      case 2: // ~25 degrees
+      case 2: // ~45 degrees
         y_vector = 0;
         x_vector = 1;
         break;
-      case 3: // ~45 degrees
-        y_vector = 0;
+      case 3: // ~67.5 degrees
+        y_vector = -1;
         x_vector = 1;
         break;
       case 4: // ~90 degrees
         y_vector = -1;
         x_vector = 1;
         break;
-      case 5: // ~120 degrees
+      case 5: // ~112.5 degrees
         y_vector = -2;
         x_vector = 1;
         break;
-      case 6: // ~150 degrees
+      case 6: // ~135 degrees
         y_vector = -3;
         x_vector = 1;
         break;
-      case 7: // ~170 degrees
+      case 7: // ~157.5 degrees
         y_vector = -4;
         x_vector = 1;
         break;
-      case -1: // ~-10 degrees
+      case -1: // ~-22.5 degrees
         y_vector = 1;
         x_vector = 1;
         break;
-      case -2: // ~-25 degrees
-        y_vector = 1;
-        x_vector = 1;
-        break;
-      case -3: // ~-45 degrees
+      case -2: // ~-45 degrees
         y_vector = 0;
+        x_vector = 1;
+        break;
+      case -3: // ~-67.5 degrees
+        y_vector = -1;
         x_vector = 1;
         break;
       case -4: // ~-90 degrees
         y_vector = -1;
         x_vector = 1;
         break;
-      case -5: // ~-120 degrees
+      case -5: // ~-112.5 degrees
         y_vector = -2;
         x_vector = 1;
         break;
-      case -6: // ~-150 degrees
+      case -6: // ~-135 degrees
         y_vector = -3;
         x_vector = 1;
         break;
-      case -7: // ~-170 degrees
+      case -7: // ~-157.5 degrees
         y_vector = -4;
         x_vector = 1;
         break;
-      case -8: // 180 degrees
+      case -8: // -180 degrees
         y_vector = -5;
         x_vector = 0;
         break;
     }
-    if (x_vector != 0) { // if the ball is not infront or behind chase the x direction of the ball
-      x_vector = get_x(latest_ballDirection);
-    }
 
-    bot.omnidrive(x_vector, y_vector, -Output, 100); //apply the current vector to the robot
+    /*
+    if (x_vector != 0) { // if the ball is not infront or behind chase the x direction of the ball
+      x_vector = 0
+    }
+    */
+    Serial.print(latest_ballDirection);
+    Serial.print(" : ");
+    Serial.println(y_vector);
+
+    bot.omnidrive(get_x(latest_ballDirection), y_vector, -Output, Speed); //apply the current vector to the robot
     /*
     if (latest_ballDirection != 0) {  // ball is not in front
       if (latest_ballDirection <= -130 || latest_ballDirection >= 130) {
@@ -138,7 +143,7 @@ public:
 
   void attack() {
     if (bot.goalExists && bot.hasBall == 1) {
-      bot.omnidrive(get_x(goalDirection), get_y(goalDirection), -Output, Speed);
+      bot.omnidrive(get_x(goalDirection), 1, -Output, Speed);
     } 
     else idle();
   }

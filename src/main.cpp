@@ -1,12 +1,14 @@
 // Import all Lib´s
 #include "bohlebots.h"
 #include "pompeii.h"
-#include <PID_v1.h> 
+#include <PID_v1.h>
+#include <Movement/Movement.h>
 
 // Init bot
 BohleBots bot;          // initiate the bot header
 Controller controller(bot);  // initiate the pompeii header
 elapsedMillis fahrzeit;
+Movement Drive;  // initiate the movement header
 
 // Ints, you know, change
 int modus = 0;
@@ -27,8 +29,6 @@ int SetpointMulti = 0;
 
 // Init PID
 PID adjustRotation(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
-PID faceBall(&BInput, &BOutput, &BSetpoint, BKp, BKi, BKd, DIRECT);
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup() {
   // Serial connection
@@ -44,9 +44,6 @@ void setup() {
   bot.setCompassDirection(bot.kompass());  // set default angle as a variable (should be 0)
 
   Setpoint = 0;   // PID setpoint
-  BSetpoint = 0;  // Ball PID setpoint
-  faceBall.SetMode(AUTOMATIC);
-  faceBall.SetOutputLimits(-40, 40);
   adjustRotation.SetMode(AUTOMATIC);
   adjustRotation.SetOutputLimits(-40, 40);
   Serial.println("Done!");
@@ -123,7 +120,6 @@ void loop() {
     bot.boardled(1, ROT);
     bot.boardled(2, ROT);
     bot.fahre(0, 0, 0);
-    bot.motor(4, 100);
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -149,25 +145,8 @@ void loop() {
 
     // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
     // bot.omnidrive(0, 0, -Output, 100);  // test for PID
-    // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50);
-    /*
-    if (bot.goalExists) {
-      if (!bot.goalDistance <= 10) {
-        bot.omnidrive(controller.get_x(goalDirection), 1, -Output, 100);
-        Serial.print("Goal does Exist : ");
-        Serial.println(controller.get_x(goalDirection));
-      }
-    }
-    else {
-      bot.boardled(1, ROT);
-      Serial.println("Goal does not Exist");
-      bot.omnidrive(0, 0, -Output, 70);
-    }
-    */
-
+    // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50;
     //bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
-    //angle += 22.5;
-    //if (angle >= 180) angle = -180;
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
@@ -178,7 +157,7 @@ void loop() {
     // Serial.println(latest_ballDirection);
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
-    Serial.println(bot.lightgate);
+    // Serial.println(bot.lightgate);
     // Serial.print(controller.get_x(bot.ballDirection));
     // Serial.print(" : ");
     // Serial.println(controller.get_y(bot.ballDirection));
@@ -193,5 +172,12 @@ void loop() {
       Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
+    float _x = controller.get_x(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
+    float _y = controller.get_y(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
+    if (abs(bot.ballDirection) < 5) {
+      _x = 0;
+      _y = 0;
+    }
+    bot.omnidrive(_x, _y, -Output, 40);
   }
 }

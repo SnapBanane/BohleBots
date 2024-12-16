@@ -54,6 +54,7 @@
 #include <Pixy2I2C.h>
 #include <Wire.h>
 #include <elapsedMillis.h>
+#include <IR/IRSensor.hpp>
 Pixy2I2C pixy;
 #define SDA 21
 #define SCL 22
@@ -397,6 +398,8 @@ public:
   }
 
 private:
+  I2C::IRModule irModule;
+
   int spdToPWM(int speed) {
     if (speed < 0)
       speed *= -1;
@@ -455,15 +458,16 @@ private:
       }
     }  // ENDE TastLED
 
-    Wire.requestFrom(IR_ADDRESS, 2); 
-    if (Wire.available() == 2) {
-      uint8_t rawDirection = Wire.read();
-      ballDirection = (int8_t)rawDirection;
-      ballDirection = ballDirection * -22.5;
-      uint8_t rawDistance = Wire.read();
-      ballDistance = (int8_t)rawDistance;
+    irModule.update();
+    Vector2 ballVector = irModule.getBallVector();
+    ballDirection = std::atan2(ballVector.getX(), ballVector.getY()) * 180.0 / std::numbers::pi;
+    ballDirection *= -1;
+    ballDistance = ballVector.getMagnitude();
+    ballDistance = ballDistance - 87;
+    if (ballDistance < 0) {
+      ballDistance = 0;
     }
-    if (ballDirection != 249) {
+    if (ballDirection != 6) {
       ballExists = true;
     } else {
       ballExists = false;

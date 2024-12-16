@@ -2,7 +2,7 @@
 #define POMPEII_H
 
 #include "bohlebots.h"
-#include <PID_v1.h>
+#include <Movement/Movement.h>
 
 class Controller {
 private:
@@ -117,28 +117,6 @@ public:
     Serial.println(y_vector);
 
     bot.omnidrive(get_x(latest_ballDirection), y_vector, -Output, Speed); //apply the current vector to the robot
-    /*
-    if (latest_ballDirection != 0) {  // ball is not in front
-      if (latest_ballDirection <= -130 || latest_ballDirection >= 130) {
-        bot.boardled(2, ROT);
-        bot.omnidrive(get_x(latest_ballDirection), -1, -Output, Speed);
-      } 
-      
-      else {
-        bot.boardled(2, BLAU);
-        bot.omnidrive(get_x(latest_ballDirection), 1, -Output, Speed);
-      }
-    } 
-    else {
-      bot.boardled(2, GRUEN);
-      bot.omnidrive(0, 1, -Output, Speed);
-    }
-    */
-    /*
-    Serial.print(x_vector);
-    Serial.print(" : ");
-    Serial.println(y_vector);
-    */
   }
 
   void attack() {
@@ -178,7 +156,7 @@ public:
 
   void setPIDSpeed(double speed) {
     Output = speed;
-  } 
+  }
 
   void Debug() {
     Serial.println("+-------------------+");

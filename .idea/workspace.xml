@@ -7,6 +7,7 @@
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="11" type="long" />
   </component>
   <component name="CMakeProjectFlavorService">
@@ -23,15 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="-fixed strat somewhat">
-      <change afterPath="$PROJECT_DIR$/include/Movement/Movement.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Movement/Movement.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/bohlebots.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/bohlebots.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/pompeii.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/pompeii.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="-imports&#10;-angle fixes&#10;-drive in circle to ball" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,9 +131,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
@@ -213,7 +206,8 @@
       <workItem from="1734020029801" duration="2383000" />
       <workItem from="1734032429009" duration="627000" />
       <workItem from="1734177893744" duration="407000" />
-      <workItem from="1734362174360" duration="12216000" />
+      <workItem from="1734362174360" duration="12250000" />
+      <workItem from="1734620590772" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 2">
       <option name="closed" value="true" />
@@ -287,7 +281,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734028207408</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="-imports&#10;-angle fixes&#10;-drive in circle to ball">
+      <option name="closed" value="true" />
+      <created>1734375741448</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734375741448</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +314,8 @@
     <MESSAGE value="-Some fixes and debug functions" />
     <MESSAGE value="-fixed drive and ballDirection" />
     <MESSAGE value="-fixed strat somewhat" />
-    <option name="LAST_COMMIT_MESSAGE" value="-fixed strat somewhat" />
+    <MESSAGE value="-imports&#10;-angle fixes&#10;-drive in circle to ball" />
+    <option name="LAST_COMMIT_MESSAGE" value="-imports&#10;-angle fixes&#10;-drive in circle to ball" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

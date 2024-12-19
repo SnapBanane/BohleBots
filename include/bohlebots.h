@@ -50,7 +50,7 @@
 
 // Achtung : kein delay im Hauptprogramm nutzen.
 // statt dessen bohlebots.warte(ms)
-
+#include <Arduino.h>
 #include <Pixy2I2C.h>
 #include <Wire.h>
 #include <elapsedMillis.h>
@@ -460,7 +460,7 @@ private:
 
     irModule.update();
     Vector2 ballVector = irModule.getBallVector();
-    ballDirection = std::atan2(ballVector.getY(), ballVector.getX()) * 180.0 / std::numbers::pi;
+    ballDirection = std::atan2(ballVector.getY(), ballVector.getX()) * 180.0 / PI;
     ballDirection *= -1;
     ballDistance = ballVector.getMagnitude();
     ballDistance = ballDistance - 87;

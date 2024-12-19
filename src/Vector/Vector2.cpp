@@ -13,7 +13,7 @@
 #include <string>
 #include <cmath>
 #include <algorithm>
-#include <numbers>
+constexpr double PI = 3.141592653589793;
 
 ////////////////////////////////////////////////////////////////
 //--- CONSTRUCTOR --------------------------------------------//
@@ -190,7 +190,7 @@ bool Vector2::vectorIsInSector(const Vector2 &v, const Vector2 &a, const Vector2
 std::string Vector2::debugString() const {
     std::string cartesian = "[ x = " + std::to_string(this->_x) + ", y = " + std::to_string(this->_y) + " ]";
     std::string polar = "[ rad = " + std::to_string(this->_magnitude) + ", angle = " +
-                        std::to_string(this->_angle / std::numbers::pi) + " * PI ]";
+                        std::to_string(this->_angle / PI) + " * PI ]";
     return cartesian + " <=> " + polar;
 }
 

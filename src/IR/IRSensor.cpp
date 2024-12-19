@@ -6,6 +6,8 @@
 
 #define irAddress 0x55
 
+const double PI = 3.141592653589793;
+
     I2C::IRModule::IRModule() {
         _distance = 0;
         _direction = 0;
@@ -34,7 +36,7 @@
 
     void I2C::IRModule::calcBallVector() {
         double realDistance = abstractToWorldDistance(_distance);
-        double radianDirection = (double) _direction / 64.0 * 2 * std::numbers::pi;
+        double radianDirection = (double) _direction / 64.0 * 2 * PI;
 
         _ballVector = Vector2(std::sin(radianDirection) * realDistance, std::cos(radianDirection) * realDistance);
     }

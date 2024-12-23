@@ -460,7 +460,8 @@ private:
 
     irModule.update();
     Vector2 ballVector = irModule.getBallVector();
-    ballDirection = std::atan2(ballVector.getY(), ballVector.getX()) * 180.0 / PI;
+    //ballDirection = std::atan2(ballVector.getY(), ballVector.getX()) * 180.0 / PI;
+    ballDirection = irModule.getDirection();
     ballDirection *= -1;
     ballDistance = ballVector.getMagnitude();
     ballDistance = ballDistance - 87;

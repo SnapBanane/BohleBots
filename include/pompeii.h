@@ -3,6 +3,7 @@
 
 #include "bohlebots.h"
 #include <Movement/Movement.h>
+#include <Arduino.h>
 
 class Controller {
 private:

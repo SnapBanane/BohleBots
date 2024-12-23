@@ -173,6 +173,7 @@ void loop() {
       Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
+    /*
     float _x = controller.get_x(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
     float _y = controller.get_y(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
     if (abs(bot.ballDirection) < 5) {
@@ -180,5 +181,8 @@ void loop() {
       _y = 0;
     }
     bot.omnidrive(_x, _y, -Output, 40);
+     */
+
+    Serial.println(bot.ballDirection);
   }
 }

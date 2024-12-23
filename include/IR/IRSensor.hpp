@@ -24,6 +24,8 @@ namespace I2C {
         Vector2 getBallVector();
 
         double abstractToWorldDistance(double distance);
+
+        double getDirection();
     private:
         int _distance;
         int _direction;

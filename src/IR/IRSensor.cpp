@@ -3,6 +3,8 @@
 //
 #include "IR/IRSensor.hpp"
 #include <Wire.h>
+#include <cmath>
+#include <iostream>
 
 #define irAddress 0x55
 
@@ -47,4 +49,30 @@ const double PI = 3.141592653589793;
                + 3.805895492702444 * pow(x, 2)
                - 0.07899507898499276 * pow(x, 3)
                + 0.0006191724941177318 * pow(x, 4);
+    }
+    double I2C::IRModule::getDirection() {
+      /*
+        double direction = std::atan2(_ballVector.getX(), _ballVector.getY()) * 180.0 / PI;
+        direction = -direction;
+        direction = std::fmod(direction + 180.0, 360.0);
+        if (direction < 0) direction += 360.0;
+        direction -= 180.0;
+        return direction;
+       */
+        double _x = _ballVector.getX();
+        double _y = _ballVector.getY();
+        _y = -_y;
+        double direction = std::atan2(_x, _y) * 180 / PI;
+        /*
+        // Drehung um 90 Grad nach links
+        direction += 90;
+
+        // Sicherstellen, dass der Winkel zwischen -180 und 180 bleibt
+        if (direction < -180) {
+            direction += 360;
+        } else if (direction > 180) {
+            direction -= 360;
+        }
+        */
+        return direction;
     }

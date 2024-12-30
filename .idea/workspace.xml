@@ -8,7 +8,6 @@
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="3" type="long" />
-    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
   </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
@@ -24,12 +23,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="FIXED PIO">
+    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="fixed the ballDirection again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/IR/IRSensor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/IR/IRSensor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Movement/Movement.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Movement/Movement.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/bohlebots.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/bohlebots.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/pompeii.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/pompeii.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IR/IRSensor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/IR/IRSensor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Movement/Movement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movement/Movement.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,10 +63,10 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/include/bohlebots.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/IR/IRSensor.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/IR/IRSensor.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Movement/Movement.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Vector/Vector2.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Vector/Vector2.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PlatformioLocalSettings">
     <option name="availableProjects">
@@ -106,7 +105,7 @@
     <option name="productBranch" value="Classic" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 1
+  &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2ozhXLZWVVUSSrMYcsT9g1HdfTO" />
   <component name="ProjectViewState">
@@ -132,7 +131,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -145,10 +144,16 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
@@ -251,7 +256,10 @@
       <workItem from="1734637774296" duration="317000" />
       <workItem from="1734638132433" duration="97000" />
       <workItem from="1734638259578" duration="3304000" />
-      <workItem from="1734957951523" duration="3739000" />
+      <workItem from="1734957951523" duration="5114000" />
+      <workItem from="1735567944952" duration="1832000" />
+      <workItem from="1735569821186" duration="1861000" />
+      <workItem from="1735571893002" duration="7057000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 2">
       <option name="closed" value="true" />
@@ -357,7 +365,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734641542114</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fixed the ballDirection">
+      <option name="closed" value="true" />
+      <created>1734962259057</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1734962259057</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fixed the ballDirection again">
+      <option name="closed" value="true" />
+      <created>1734962548774</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1734962548774</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +411,9 @@
     <MESSAGE value="-fixed strat somewhat" />
     <MESSAGE value="-imports&#10;-angle fixes&#10;-drive in circle to ball" />
     <MESSAGE value="FIXED PIO" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIXED PIO" />
+    <MESSAGE value="fixed the ballDirection" />
+    <MESSAGE value="fixed the ballDirection again" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the ballDirection again" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

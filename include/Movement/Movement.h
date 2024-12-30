@@ -8,6 +8,8 @@
 class Movement {
 public:
     float DriveToBall(int _ballDirection, int _ballDistance);
+
+    void MatchGoalAngle(int _goalDirection, int _ballDirection);
 private:
     float WrapAngle(float _alpha);
 };

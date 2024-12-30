@@ -17,7 +17,7 @@ float Movement::WrapAngle(float _alpha) {
 
 float Movement::DriveToBall(int _ballDirection, int _ballDistance) {
   if (_ballDistance > 100) {
-    multiplier = 2;
+    multiplier = 1.5;
   } else {
     multiplier = 3.5;
   }
@@ -38,4 +38,8 @@ float Movement::DriveToBall(int _ballDirection, int _ballDistance) {
   Serial.println(_ballDirection);
 
   return _alpha;
+}
+
+void Movement::MatchGoalAngle(int _goalDirection, int _ballDirection) {
+
 }

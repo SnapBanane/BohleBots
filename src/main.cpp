@@ -85,7 +85,7 @@ void check_buttons() {
 void updateSensors() {
   if (latest_compass != bot.kompass()) latest_compass = bot.kompass();
   adjustRotation.Compute();
-  Input = latest_compass + SetpointMulti;
+  Input = latest_compass;
   // Input = goalDirection;
   if (abs(Input) <= 8) {  // 8 degree tolerance
     Output = 0;
@@ -173,7 +173,7 @@ void loop() {
       Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-    /*
+
     float _x = controller.get_x(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
     float _y = controller.get_y(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
     if (abs(bot.ballDirection) < 5) {
@@ -181,8 +181,7 @@ void loop() {
       _y = 0;
     }
     bot.omnidrive(_x, _y, -Output, 40);
-     */
 
-    Serial.println(bot.ballDirection);
+    //Serial.println(bot.ballDirection);
   }
 }

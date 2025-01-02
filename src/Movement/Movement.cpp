@@ -30,14 +30,14 @@ float Movement::DriveToBall(int _ballDirection, int _ballDistance) {
     }
   }
   int _beta = WrapAngle(_alpha);
-
+  /*
   Serial.print(_alpha);
   Serial.print(", ");
   Serial.print(_beta);
   Serial.print(" : ");
   Serial.println(_ballDirection);
-
-  return _alpha;
+  */
+  return _beta;
 }
 
 void Movement::MatchGoalAngle(int _goalDirection, int _ballDirection) {

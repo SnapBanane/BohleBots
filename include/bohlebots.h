@@ -463,7 +463,10 @@ private:
     ballDirection = irModule.getDirection();
     ballDirection *= -1;
     ballDistance = ballVector.getMagnitude();
-    ballDistance = ballDistance - 87;
+    ballDistance -= 60;
+    if (ballDirection < -90) {
+      ballDistance -= 92;
+    }
     if (ballDistance < 0) {
       ballDistance = 0;
     }

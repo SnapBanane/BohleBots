@@ -492,7 +492,6 @@ private:
   void
   pixy_auswerten()  // wird nur aufgerufen, wenn die Pixy überhaupt etwas sieht
   {
-    my_signature = 1;
     int sieht_farbe = pixy.ccc.blocks[0].m_signature;
     if (sieht_farbe == my_signature) {
       goalDirection = (pixy.ccc.blocks[0].m_x - 158) / 2;
@@ -507,6 +506,7 @@ private:
       if (goalDistance > 63)
         goalDistance = 63;
     }
+    // Serial.println(goalDirection); // Debug
   }
 
   void pixy_read() {

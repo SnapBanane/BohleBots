@@ -9,7 +9,7 @@ class Movement {
 public:
     float DriveToBall(int _ballDirection, int _ballDistance); // Calculate an angle to drive to the ball
 
-    void MatchGoalAngle(int _goalDirection, int _ballDirection); // Match the goal angle with the ball angle
+    void Score(int _goalDirection, int _ballDirection); // Match the goal angle with the ball angle
 private:
     float WrapAngle(float _alpha); // Wrap the angle between -180 and 180
 };

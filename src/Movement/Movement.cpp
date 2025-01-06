@@ -28,6 +28,7 @@ float Movement::DriveToBall(int _ballDirection, int _ballDistance) {
     } else {
       _alpha = _ballDirection + 60;
     }
+
   }
   int _beta = WrapAngle(_alpha);
   /*
@@ -40,6 +41,6 @@ float Movement::DriveToBall(int _ballDirection, int _ballDistance) {
   return _beta;
 }
 
-void Movement::MatchGoalAngle(int _goalDirection, int _ballDirection) {
+void Movement::Score(int _goalDirection, int _ballDirection) {
 
 }

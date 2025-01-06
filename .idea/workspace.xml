@@ -7,8 +7,8 @@
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
     <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="3" type="long" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
   </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
@@ -24,11 +24,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="fixed the ballDirection again">
+    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="fixed the ballDirection again and fixed the drive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Movement/Movement.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Movement/Movement.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/bohlebots.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/bohlebots.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Movement/Movement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movement/Movement.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
@@ -64,10 +63,10 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/include/bohlebots.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/IR/IRSensor.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Movement/Movement.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/IR/IRSensor.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Movement/Movement.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Vector/Vector2.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main.cpp" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PlatformioLocalSettings">
     <option name="availableProjects">
@@ -145,10 +144,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
@@ -268,7 +270,8 @@
       <workItem from="1735734418593" duration="20000" />
       <workItem from="1735736257900" duration="1025000" />
       <workItem from="1735834395464" duration="1840000" />
-      <workItem from="1735836318050" duration="6384000" />
+      <workItem from="1735836318050" duration="6800000" />
+      <workItem from="1736179704233" duration="9905000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 2">
       <option name="closed" value="true" />
@@ -398,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735579665498</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fixed the ballDirection again and fixed the drive">
+      <option name="closed" value="true" />
+      <created>1735843239064</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1735843239064</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +441,8 @@
     <MESSAGE value="FIXED PIO" />
     <MESSAGE value="fixed the ballDirection" />
     <MESSAGE value="fixed the ballDirection again" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the ballDirection again" />
+    <MESSAGE value="fixed the ballDirection again and fixed the drive" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the ballDirection again and fixed the drive" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

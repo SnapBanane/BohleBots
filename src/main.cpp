@@ -21,6 +21,7 @@ double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // almost perfect || high battery
 int latest_compass;
 int goalDirection;
 int flipp_switch = 1;
+int SAdd;
 
 // Init PID
 PID adjustRotation(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
@@ -67,30 +68,17 @@ void check_buttons() {
         bot.boardled(1, BLAU);
       }
   }
-  else if (bot.taster(1, 1)) {
-    bot.my_signature = 1;
-    Serial.println("Sig 1");
-  }
-  else if (bot.taster(1, 2)) {
-    bot.my_signature = 2;
-    Serial.println("Sig 2");
-  }
-  else if (bot.taster(2, 1)) {
-    bot.my_signature = 1;
-    Serial.println("Sig 1");
-  }
-  else if (bot.taster(2, 2)) {
-    bot.my_signature = 2;
-    Serial.println("Sig 2");
-  }
   while (bot.boardtast(4) || bot.boardtast(3) || bot.boardtast(2) || bot.boardtast(1) || bot.taster(1, 1) || bot.taster(1, 2) || bot.taster(2, 1) || bot.taster(2, 2)) {
     bot.warte(5);
   }
 }
 
 void updateSensors() {
-  if (latest_compass != bot.kompass()) latest_compass = bot.kompass();
-  Input = latest_compass;
+  bot.syncSensors();
+  bot.my_signature = flipp_switch;
+  goalDirection = bot.goalDirection * -1;
+  latest_compass = bot.kompass();
+  Input = SAdd;
   adjustRotation.Compute();
   if (abs(Input) <= 4) {
     Output = 0;
@@ -100,8 +88,6 @@ void updateSensors() {
       latest_ballDirection = bot.ballDirection;
     }
   }
-  bot.syncSensors();  // sync all sensors
-  goalDirection = bot.goalDirection;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -139,7 +125,7 @@ void loop() {
     bot.boardled(2, BLAU);
 
     // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
-    // bot.omnidrive(0, 0, -Output, 100);  // test for PID
+    // if (bot.goalExists==true) bot.omnidrive(0, 0, -Output, 60);  // test for PID
     // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50;
     // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
 
@@ -167,17 +153,21 @@ void loop() {
       Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-
-    float _x = controller.get_x(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
-    float _y = controller.get_y(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
-    if (abs(bot.ballDirection) < 15 && bot.ballDistance < 30) {
-      _x = 0;
-      _y = 0;
+	*/
+    if (std::abs(latest_ballDirection) < 10) {
+      	bot.boardled(1, GRUEN);
+        bot.omnidrive(controller.get_x(goalDirection), controller.get_y(goalDirection), -Output, 40);
+		SAdd = goalDirection/2;
     }
-    bot.omnidrive(_x, _y, -Output, 60);
-     */
-    Serial.print(bot.ballDirection);
+    else {
+      	bot.boardled(1, ROT);
+        float _x = controller.get_x(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
+        float _y = controller.get_y(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
+    	bot.omnidrive(_x, _y, -Output, 40);
+        SAdd = latest_compass;
+    }
+    Serial.print(goalDirection);
     Serial.print(" : ");
-    Serial.println(goalDirection);
+    Serial.println(bot.goalDistance);
   }
 }

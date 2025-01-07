@@ -166,8 +166,8 @@ void loop() {
     	bot.omnidrive(_x, _y, -Output, 40);
         SAdd = latest_compass;
     }
-    Serial.print(goalDirection);
+    Serial.print(bot.ballDistance);
     Serial.print(" : ");
-    Serial.println(bot.goalDistance);
+    Serial.println(bot.ballDirection);
   }
 }

@@ -24,11 +24,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="fixed the ballDirection again and fixed the drive">
+    <list default="true" id="6579f185-8720-41b6-8ea6-360c97e0f01d" name="Changes" comment="fixed drive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Movement/Movement.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Movement/Movement.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/IR/IRSensor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/IR/IRSensor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/bohlebots.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/bohlebots.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Movement/Movement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movement/Movement.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IR/IRSensor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/IR/IRSensor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -212,6 +212,9 @@
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
     </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BohleBots" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -271,7 +274,9 @@
       <workItem from="1735736257900" duration="1025000" />
       <workItem from="1735834395464" duration="1840000" />
       <workItem from="1735836318050" duration="6800000" />
-      <workItem from="1736179704233" duration="9905000" />
+      <workItem from="1736179704233" duration="10188000" />
+      <workItem from="1736274044798" duration="887000" />
+      <workItem from="1736277305820" duration="2220000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 2">
       <option name="closed" value="true" />
@@ -409,7 +414,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735843239064</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fixed drive">
+      <option name="closed" value="true" />
+      <created>1736189993133</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1736189993133</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +455,8 @@
     <MESSAGE value="fixed the ballDirection" />
     <MESSAGE value="fixed the ballDirection again" />
     <MESSAGE value="fixed the ballDirection again and fixed the drive" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the ballDirection again and fixed the drive" />
+    <MESSAGE value="fixed drive" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed drive" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -461,8 +461,8 @@ private:
     irModule.update();
     Vector2 ballVector = irModule.getBallVector();
     ballDirection = irModule.getDirection();
-    ballDirection *= -1;
     ballDistance = ballVector.getMagnitude();
+    /*
     ballDistance -= 60;
     if (ballDirection < -90) {
       ballDistance -= 92;
@@ -470,6 +470,8 @@ private:
     if (ballDistance < 0) {
       ballDistance = 0;
     }
+
+     */
     if (ballDirection != 6) {
       ballExists = true;
     } else {

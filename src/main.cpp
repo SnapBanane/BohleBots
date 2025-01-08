@@ -154,10 +154,9 @@ void loop() {
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
 	*/
-    if (std::abs(latest_ballDirection) < 10) {
+    if (std::abs(latest_ballDirection) <= 11) {
       	bot.boardled(1, GRUEN);
-        bot.omnidrive(controller.get_x(goalDirection), controller.get_y(goalDirection), -Output, 40);
-		SAdd = goalDirection/2;
+        bot.omnidrive(0, 1, goalDirection/4, 40);
     }
     else {
       	bot.boardled(1, ROT);

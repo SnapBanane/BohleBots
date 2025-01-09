@@ -4,6 +4,7 @@
 #include "pompeii.h"
 #include <PID_v1.h>
 #include <Movement\Movement.h>
+#include <Vector\Vector2.hpp>
 
 // Init bot
 BohleBots bot;          // initiate the bot header
@@ -153,20 +154,23 @@ void loop() {
       Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-	*/
-    if (std::abs(latest_ballDirection) <= 11) {
+
+    if (std::abs(latest_ballDirection) < 0) {
       	bot.boardled(1, GRUEN);
         bot.omnidrive(0, 1, goalDirection/4, 40);
     }
     else {
       	bot.boardled(1, ROT);
-        float _x = controller.get_x(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
-        float _y = controller.get_y(Drive.DriveToBall(latest_ballDirection, bot.ballDistance));
+        Vector2 driveVector = Drive.DriveToBall(latest_ballDirection, bot.ballDistance);
+        float _x = driveVector.getX();
+        float _y = driveVector.getY();
     	bot.omnidrive(_x, _y, -Output, 40);
         SAdd = latest_compass;
     }
-    Serial.print(bot.ballDistance);
-    Serial.print(" : ");
-    Serial.println(bot.ballDirection);
+    */
+    Vector2 driveVector = Drive.CircleBall(latest_ballDirection, bot.ballDistance);
+    float _x = driveVector.getX();
+    float _y = driveVector.getY();
+    bot.omnidrive(_x, _y, -Output, 40);
   }
 }

@@ -211,7 +211,6 @@ public:
     }
   }
 
-
   void warte(int zeit) {
     wartezeit = 0;
     i2csync();

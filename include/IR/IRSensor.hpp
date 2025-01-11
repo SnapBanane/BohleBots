@@ -1,6 +1,7 @@
 //
-// made by Julius Gerhardus on 12.12.24
+// made by Julius Gerhardus on 11.01.2025
 //
+#pragma once
 #include "Vector/Vector2.hpp"
 namespace I2C {
     class IRModule {
@@ -10,9 +11,10 @@ namespace I2C {
         Vector2 getBallVector();
         void readModule();
         void calcBallVector();
-        double abstractToWorldDistance(double x);
+        double abstractToWorldDistance(double distance);
         double getDirection();
-        double clip(double value, double min, double max); // Change return type to double
+        double clip(double value, double min, double max);
+
     private:
         int _distance;
         int _direction;

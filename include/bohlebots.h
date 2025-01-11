@@ -496,6 +496,7 @@ private:
     int sieht_farbe = pixy.ccc.blocks[0].m_signature;
     if (sieht_farbe == my_signature) {
       goalDirection = (pixy.ccc.blocks[0].m_x - 158) / 2;
+      goalDirection *= -1;
       int tor_breite = pixy.ccc.blocks[0].m_width;
       int tor_hoehe = pixy.ccc.blocks[0].m_height;
       // tor_entfernung_roh =  pixy.ccc.blocks[0].m_y-80;

@@ -40,10 +40,14 @@ void I2C::IRModule::calcBallVector() {
     double realDistance = abstractToWorldDistance(_distance);
     double radianDirection = (_direction + 1) / 64.0 * 2 * PI;
 
-    _ballVector = Vector2(std::sin(radianDirection) * realDistance, std::cos(radianDirection) * realDistance);
+    //_ballVector = Vector2(std::sin(radianDirection) * realDistance, std::cos(radianDirection) * realDistance);
+    _ballVector = Vector2(-std::cos(radianDirection) * realDistance, std::sin(radianDirection) * realDistance);
 
     double distanceCorrectionFactor = 1 / (1 + std::sin(clip(std::fabs(PI - radianDirection) - PI / 2, 0, PI)));
-    _ballVector *= clip(distanceCorrectionFactor / 4 , 0, 1);
+    _ballVector *= clip(distanceCorrectionFactor, 0, 1);
+   // Serial.print(_ballVector.getX());
+   // Serial.print(" : ");
+   // Serial.println(_ballVector.getY());
 
 }
 
@@ -52,10 +56,16 @@ double I2C::IRModule::abstractToWorldDistance(double x) {
 }
 
 double I2C::IRModule::getDirection() {
+    /*
     double _x = _ballVector.getX();
     double _y = _ballVector.getY() * -1;
 
     return std::atan2(_x, _y) * 180 / PI;
+    */
+    double x = ((_direction+1) * 360 / 64) - 180;
+    x *= -1;
+    // Serial.println(x);
+    return x;
 }
 
 double I2C::IRModule::clip(double value, double min, double max) {

@@ -154,23 +154,38 @@ void loop() {
       Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
+    */
 
-    if (std::abs(latest_ballDirection) < 0) {
+    if (std::abs(latest_ballDirection) < 5) {
       	bot.boardled(1, GRUEN);
         bot.omnidrive(0, 1, goalDirection/4, 40);
     }
     else {
       	bot.boardled(1, ROT);
-        Vector2 driveVector = Drive.DriveToBall(latest_ballDirection, bot.ballDistance);
-        float _x = driveVector.getX();
-        float _y = driveVector.getY();
-    	bot.omnidrive(_x, _y, -Output, 40);
-        SAdd = latest_compass;
+        int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance);
+        float _x = controller.get_x((float)driveAngle);
+        float _y = controller.get_y((float)driveAngle);
+    	  bot.omnidrive(_x, _y, -Output, 40);
+        SAdd = latest_compass / 2;
     }
-    */
-    Vector2 driveVector = Drive.CircleBall(latest_ballDirection, bot.ballDistance);
+    /*
+    Vector2 driveVector = Drive.DriveToBall(latest_ballDirection, bot.ballDistance);
     float _x = driveVector.getX();
     float _y = driveVector.getY();
+
+    // Cap _x and _y at -1 and 1 while keeping their relation
+    float maxVal = std::max(std::abs(_x), std::abs(_y));
+    if (maxVal > 1) {
+      _x /= maxVal;
+      _y /= maxVal;
+    }
+
     bot.omnidrive(_x, _y, -Output, 40);
+    */
+    /*
+    Serial.print(bot.ballDistance);
+    Serial.print(" : ");
+    Serial.println(latest_ballDirection);
+    */
   }
 }

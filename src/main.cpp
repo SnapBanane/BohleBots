@@ -154,9 +154,8 @@ void loop() {
       Kd = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-    */
-    /*
-    if (std::abs(latest_ballDirection) < 5) {
+
+    if (std::abs(latest_ballDirection) < 0) {
       	bot.boardled(1, GRUEN);
         bot.omnidrive(0, 1, goalDirection/4, 40);
     }
@@ -169,10 +168,6 @@ void loop() {
         SAdd = latest_compass / 2;
     }
     */
-    /*
-    Serial.print(bot.ballDistance);
-    Serial.print(" : ");
-    Serial.println(latest_ballDirection);
-    */
+  	Serial.println(bot.ballDistance);
   }
 }

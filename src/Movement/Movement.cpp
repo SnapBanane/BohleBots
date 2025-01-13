@@ -21,28 +21,32 @@ int Movement::WrapAngle(int _alpha) {
 
 int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
 {
-  switch (_ballDistance)
-  {
-
+  if (_ballDistance == 1) { // Very Close to ball = drive in circle around ball
+    return WrapAngle(_ballDirection + std::copysign(90, _ballDirection));
   }
-  int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier);
-  if (_alpha > std::abs(_ballDirection + 60) || abs(_alpha) >= 360) {
-    if (_ballDirection <= 0) {
-      _alpha = _ballDirection - 60;
-    } else {
-      _alpha = _ballDirection + 60;
-    }
 
+  if (_ballDistance == 3) { // Farther away = drive smaller circle around ball
+    multiplier = 2;
   }
-  const int _beta = WrapAngle(_alpha);
-  /*
+
+  if (_ballDistance > 3) { // far away - infinity = drive straight to ball
+    multiplier = 2 / (_ballDistance / 4);
+  }
+
+  int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
+
+  if (abs(_alpha) >= 180) { // cap the drive at 180 (exept to near to the ball)
+    _alpha = 180;
+  }
+
   Serial.print(_alpha);
-  Serial.print(", ");
-  Serial.print(_beta);
+  Serial.print(" : ");
+  Serial.print(_ballDistance);
   Serial.print(" : ");
   Serial.println(_ballDirection);
-  */
-  return _beta;
+
+  return WrapAngle(_alpha);
+
   /*
   double circleAroundBallSize = 15;
 
@@ -52,12 +56,9 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
 
   Vector2 driveVector(y, x); // Create a vector from x and y
 
-  irModule.update();
-  Vector2 driveVector = irModule.getBallVector();
-
-  bool isBallAligned = std::abs(driveVector.getY()) < 5;  // within 5 cm of the ball
-  bool isBehindBall = driveVector.getX() > 0;  // before middle part of bot
-  bool isFullyBehindBall = driveVector.getX() > circleAroundBallSize;  // before most forward part of bot
+   bool isBallAligned = std::fabs(driveVector.getY()) < 5; // is centered behind the ball
+   bool isBehindBall = driveVector.getX() > 0;  // before middle part of bot
+   bool isFullyBehindBall = driveVector.getX() > 5;  // before most forward part of bot
 
   if (isBallAligned && isBehindBall) {
     driveVector.setY(driveVector.getY() * 2);
@@ -107,9 +108,15 @@ Vector2 Movement::CircleBall(int _ballDistance, int _ballDirection) {
 
     Vector2 driveVector(y, x); // Create a vector from x and y
 
-    float rotation = std::copysign(M_PI / 2, driveVector.getY());
-    driveVector = Vector2::rotate(driveVector, rotation);
-    return driveVector;
+    // Calculate the angle to circle around the ball
+    float circleAroundBallAngle = std::atan2(driveVector.getY(), driveVector.getX()) + M_PI / 2;
+
+    // Calculate the new position to maintain a distance of 5 units from the ball
+    double newX = 5 * std::cos(circleAroundBallAngle);
+    double newY = 5 * std::sin(circleAroundBallAngle);
+
+    driveVector.setX(newX);
+    driveVector.setY(newY);
 
     return driveVector;
 }

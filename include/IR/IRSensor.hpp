@@ -13,6 +13,7 @@ namespace I2C {
         void calcBallVector();
         double abstractToWorldDistance(double distance);
         double getDirection();
+        double getDistance();
         double clip(double value, double min, double max);
 
     private:

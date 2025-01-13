@@ -30,7 +30,7 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
   }
 
   if (_ballDistance > 3) { // far away - infinity = drive straight to ball
-    multiplier = 2 / (_ballDistance / 4);
+    multiplier = 2 / (static_cast<float>(_ballDirection) / 4);
   }
 
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball

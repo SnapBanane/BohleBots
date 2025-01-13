@@ -80,10 +80,10 @@ void updateSensors() {
   goalDirection = bot.goalDirection * -1;
   latest_compass = bot.kompass();
   Input = SAdd;
-  adjustRotation.Compute();
-  if (abs(Input) <= 4) {
-    Output = 0;
+  if (std::abs(Input) <= 1) {
+    Input = 0;
   }
+  adjustRotation.Compute();
   if (bot.ballExists == true) {  // update the ballDirection
     if (latest_ballDirection != bot.ballDirection) {
       latest_ballDirection = bot.ballDirection;
@@ -155,19 +155,21 @@ void loop() {
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
 
-    if (std::abs(latest_ballDirection) < 0) {
+	*/
+    if (std::abs(latest_ballDirection) < 5 && bot.ballDistance < 20) {
       	bot.boardled(1, GRUEN);
-        bot.omnidrive(0, 1, goalDirection/4, 40);
+        SAdd = goalDirection / 4;
+        bot.omnidrive(0, 1, -Output, 70);
     }
     else {
       	bot.boardled(1, ROT);
         int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance);
         float _x = controller.get_x((float)driveAngle);
         float _y = controller.get_y((float)driveAngle);
-    	  bot.omnidrive(_x, _y, -Output, 40);
-        SAdd = latest_compass / 2;
+    	bot.omnidrive(_x, _y, -Output, 50);
+        SAdd = latest_compass;
     }
-    */
-  	Serial.println(bot.ballDistance);
+
+  	Serial.println(bot.ballDirection);
   }
 }

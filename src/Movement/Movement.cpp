@@ -6,6 +6,7 @@
 #include <cmath>
 #include <Vector\Vector2.hpp>
 #include <IR\IRSensor.hpp>
+#include <Algorithm>
 
 float multiplier;
 
@@ -21,30 +22,34 @@ int Movement::WrapAngle(int _alpha) {
 
 int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
 {
-  if (_ballDistance == 1) { // Very Close to ball = drive in circle around ball
-    return WrapAngle(_ballDirection + std::copysign(90, _ballDirection));
+  if (_ballDistance == 0) {
+        Serial.println("Error: Division by zero in DriveToBall");
+        return 180; // or handle the error appropriately
   }
 
-  if (_ballDistance == 3) { // Farther away = drive smaller circle around ball
-    multiplier = 2;
+  if (abs(_ballDirection) <= 10) {
+    multiplier = 0;
   }
 
-  if (_ballDistance > 3) { // far away - infinity = drive straight to ball
-    multiplier = 2 / (static_cast<float>(_ballDirection) / 4);
-  }
-
+  multiplier = (20 / static_cast<float>(_ballDistance)) * 2;
+  multiplier = std::max(1.0f, std::min(multiplier, 4.0f));
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
 
-  if (abs(_alpha) >= 180) { // cap the drive at 180 (exept to near to the ball)
-    _alpha = 180;
+  if (abs(_alpha) >= 360 || abs(_alpha) >= (_ballDirection + 80)) { // cap the drive at 180 (exept to near to the ball)
+    _alpha = _ballDirection + std::copysign(80, _ballDirection);
   }
 
+  if (abs(_alpha) >= 200) {
+    _alpha = std::copysign(200, _ballDirection);
+  }
+
+  /*
   Serial.print(_alpha);
   Serial.print(" : ");
   Serial.print(_ballDistance);
   Serial.print(" : ");
   Serial.println(_ballDirection);
-
+  */
   return WrapAngle(_alpha);
 
   /*

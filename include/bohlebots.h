@@ -460,7 +460,8 @@ private:
     irModule.update();
     Vector2 ballVector = irModule.getBallVector();
     ballDirection = irModule.getDirection();
-    ballDistance = irModule.getDistance();
+    //ballDistance = irModule.getDistance();
+    ballDistance = ballVector.getMagnitude();
     /*
     ballDistance -= 60;
     if (ballDirection < -90) {

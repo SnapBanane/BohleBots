@@ -44,10 +44,11 @@ void I2C::IRModule::calcBallVector() {
     _ballVector = Vector2(-std::cos(radianDirection) * realDistance, std::sin(radianDirection) * realDistance);
 
     double distanceCorrectionFactor = 1 / (1 + std::sin(clip(std::fabs(PI - radianDirection) - PI / 2, 0, PI)));
-    _ballVector *= clip(distanceCorrectionFactor, 0, 1);
+    _ballVector *= clip(distanceCorrectionFactor / 2, 0, 1);
    // Serial.print(_ballVector.getX());
    // Serial.print(" : ");
    // Serial.println(_ballVector.getY());
+    Serial.println(_distance);
 
 }
 

@@ -21,10 +21,9 @@ int Movement::WrapAngle(int _alpha) {
 
 int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
 {
-  if (_ballDistance > 32) {
-    multiplier = 1.5;
-  } else {
-    multiplier = 3.5;
+  switch (_ballDistance)
+  {
+
   }
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier);
   if (_alpha > std::abs(_ballDirection + 60) || abs(_alpha) >= 360) {
@@ -36,13 +35,13 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
 
   }
   const int _beta = WrapAngle(_alpha);
-
+  /*
   Serial.print(_alpha);
   Serial.print(", ");
   Serial.print(_beta);
   Serial.print(" : ");
   Serial.println(_ballDirection);
-
+  */
   return _beta;
   /*
   double circleAroundBallSize = 15;

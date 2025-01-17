@@ -10,7 +10,7 @@
 class Movement {
 public:
     Movement(); // Constructor
-    int DriveToBall(int _ballDirection, int _ballDistance); // Calculate an angle to drive to the ball
+    int DriveToBall(int _ballDirection, int _ballDistance, int _goalDirection); // Calculate an angle to drive to the ball
     Vector2 CircleBall(int _ballDirection, int _ballDistance); // Match the goal angle with the ball angle
 private:
     I2C::IRModule irModule; // Create an instance of the IRModule

@@ -115,8 +115,17 @@ void loop() {
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (modus == 2)  // Main || Play
   {
-    bot.boardled(2, GRUEN);
-    controller.play();
+    if (bot.hasBall == 1) {
+      bot.boardled(1, GRUEN);
+      SAdd = goalDirection / 4;
+      bot.omnidrive(0, 1, -Output, 70);
+    }
+    else {
+      bot.boardled(1, ROT);
+      const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, bot.goalDirection);
+      bot.omnidrive(controller.get_x(static_cast<float>(driveAngle)), controller.get_y(static_cast<float>(driveAngle)), -Output, 50);
+      SAdd = latest_compass;
+    }
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,20 +165,8 @@ void loop() {
     }
 
 	*/
-    if (std::abs(latest_ballDirection) < 5 && bot.ballDistance < 20) {
-      	bot.boardled(1, GRUEN);
-        SAdd = goalDirection / 4;
-        bot.omnidrive(0, 1, -Output, 70);
-    }
-    else {
-      	bot.boardled(1, ROT);
-        int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance);
-        float _x = controller.get_x((float)driveAngle);
-        float _y = controller.get_y((float)driveAngle);
-    	bot.omnidrive(_x, _y, -Output, 50);
-        SAdd = latest_compass;
-    }
 
-  	Serial.println(bot.ballDirection);
+  	Serial.println(latest_compass);
+    bot.motor(1, 50);
   }
 }

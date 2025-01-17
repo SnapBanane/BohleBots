@@ -472,7 +472,7 @@ private:
     }
 
      */
-    if (ballDirection != 6) {
+    if (!ballDistance == 0) {
       ballExists = true;
     } else {
       ballExists = false;
@@ -486,7 +486,7 @@ private:
     }
 
     lightgate = input(1);
-    if (lightgate > 2000) {
+    if (lightgate > 3600) {
       hasBall = 1;
     } else hasBall = 0;
   }

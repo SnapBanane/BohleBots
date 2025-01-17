@@ -20,7 +20,7 @@ int Movement::WrapAngle(int _alpha) {
   return wrapped - 180;
 }
 
-int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
+int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, const int _goalDirection)
 {
   if (_ballDistance == 0) {
         Serial.println("Error: Division by zero in DriveToBall");
@@ -50,59 +50,16 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance)
   Serial.print(" : ");
   Serial.println(_ballDirection);
   */
+
+  if ((_goalDirection > 0 && _alpha < 0) || (_goalDirection < 0 && _alpha > 0)) { //untested but should work
+    _alpha = (360 - abs(_alpha)) % 360;
+    if (_alpha > 180) {
+      _alpha -= 360;
+    }
+  }
+
   return WrapAngle(_alpha);
 
-  /*
-  double circleAroundBallSize = 15;
-
-  double radians = _ballDirection * M_PI / 180.0; // Convert direction to radians
-  double x = _ballDistance * std::cos(radians);   // Calculate x component
-  double y = _ballDistance * std::sin(radians);   // Calculate y component
-
-  Vector2 driveVector(y, x); // Create a vector from x and y
-
-   bool isBallAligned = std::fabs(driveVector.getY()) < 5; // is centered behind the ball
-   bool isBehindBall = driveVector.getX() > 0;  // before middle part of bot
-   bool isFullyBehindBall = driveVector.getX() > 5;  // before most forward part of bot
-
-  if (isBallAligned && isBehindBall) {
-    driveVector.setY(driveVector.getY() * 2);
-    Serial.println("Aligned and behind");
-    return driveVector;
-  }
-
-  if (driveVector.getMagnitude() <= circleAroundBallSize) {
-    Serial.print("Original driveVector: ");
-    Serial.print(driveVector.getX());
-    Serial.print(", ");
-    Serial.println(driveVector.getY());
-
-    const double rotation = std::copysign(M_PI / 2, driveVector.getY());
-    driveVector = Vector2::rotate(driveVector, rotation);
-
-    Serial.print("Rotated driveVector: ");
-    Serial.print(driveVector.getX());
-    Serial.print(", ");
-    Serial.println(driveVector.getY());
-
-    Serial.println("magnitude <= circleAroundBallSize");
-    return driveVector;
-  }
-
-  if (!isFullyBehindBall) {
-    double magnitude = driveVector.getMagnitude();
-    if (magnitude >= circleAroundBallSize) {
-      double circleAroundBallAngle = std::asin(circleAroundBallSize / magnitude);
-      driveVector = Vector2::rotate(driveVector, std::copysign(circleAroundBallAngle, driveVector.getY()));
-    }
-    Serial.println("not fully behind ball");
-    return driveVector;
-  }
-
-  driveVector.setX(driveVector.getX() - (circleAroundBallSize - 5));
-  Serial.println("nix trifft zu");
-  return driveVector;
-  */
 }
 
 Vector2 Movement::CircleBall(int _ballDistance, int _ballDirection) {

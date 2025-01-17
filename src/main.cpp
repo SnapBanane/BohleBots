@@ -4,13 +4,14 @@
 #include "pompeii.h"
 #include <PID_v1.h>
 #include <Movement\Movement.h>
-#include <Vector\Vector2.hpp>
+#include <Logic/lop.h>
 
 // Init bot
 BohleBots bot;          // initiate the bot header
 Controller controller(bot);  // initiate the pompeii header
 elapsedMillis fahrzeit;
 Movement Drive;  // initiate the movement header
+logic::lop lop;
 
 // Ints, you know, change
 int modus = 0;
@@ -69,7 +70,7 @@ void check_buttons() {
         bot.boardled(1, BLAU);
       }
   }
-  while (bot.boardtast(4) || bot.boardtast(3) || bot.boardtast(2) || bot.boardtast(1) || bot.taster(1, 1) || bot.taster(1, 2) || bot.taster(2, 1) || bot.taster(2, 2)) {
+  while (bot.boardtast(1)) {
     bot.warte(5);
   }
 }
@@ -165,8 +166,6 @@ void loop() {
     }
 
 	*/
-
-  	Serial.println(latest_compass);
-    bot.motor(1, 50);
+    Serial.println(lop.check_lop(latest_compass));
   }
 }

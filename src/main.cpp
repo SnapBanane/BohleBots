@@ -18,8 +18,9 @@ int modus = 0;
 const int MaxAngle_Drive = 5;
 int latest_ballDirection;
 double Setpoint, Input, Output;            // for PID
-double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // almost perfect || high battery
-// double Kp = 0.35, Ki = 1.5, Kd = 0.1;
+// double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // old pid
+// double Kp = 0.35, Ki = 1.5, Kd = 0.1; // very old
+double Kp = 0, Ki = 0, Kd = 0;
 int latest_compass;
 int goalDirection;
 int flipp_switch = 1;
@@ -43,7 +44,7 @@ void setup() {
 
   Setpoint = 0;   // PID setpoint
   adjustRotation.SetMode(AUTOMATIC);
-  adjustRotation.SetOutputLimits(-40, 40);
+  adjustRotation.SetOutputLimits(-100, 100);
   Serial.println("Done!");
 
   Serial.println("Waiting for Team Button Press...");
@@ -139,6 +140,7 @@ void loop() {
     // if (bot.goalExists==true) bot.omnidrive(0, 0, -Output, 60);  // test for PID
     // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50;
     // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
+    bot.omnidrive(0, 0, -Output, 100);
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
@@ -157,15 +159,14 @@ void loop() {
     // Serial.println(Setpoint);
     // Serial.print(" : ");
     // Serial.println(cycleCounter);
-    /*
     if (Serial.available() > 0) {
       String input = Serial.readStringUntil('\n');
       input.trim();
-      Kd = input.toFloat();
+      Kp = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-
-	*/
-    Serial.println(lop.check_lop(latest_compass));
+    Serial.print(latest_compass);
+    Serial.print(" ");
+    Serial.println(Setpoint);
   }
 }

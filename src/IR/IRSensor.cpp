@@ -66,6 +66,9 @@ double I2C::IRModule::getDirection() {
     _direction = clip(_direction, 0, 64);
     double x = ((_direction+2) * 360 / 64) - 180;
     x *= -1;
+    if (abs(x) > 180) {
+        x = std::copysign(180, x);
+    }
     // Serial.println(x);
     return x;
 }

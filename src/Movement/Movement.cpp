@@ -34,29 +34,30 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
   multiplier = (20 / static_cast<float>(_ballDistance)) * 2;
   multiplier = std::max(1.0f, std::min(multiplier, 4.0f));
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
-
-  if (abs(_alpha) >= 360 || abs(_alpha) >= (_ballDirection + 80)) { // cap the drive at 180 (exept to near to the ball)
+  /*
+  if (abs(_alpha) >= 360 || abs(_alpha) >= (abs(_ballDirection) + 80)) { // cap the drive at 180 (exept to near to the ball)
     _alpha = _ballDirection + std::copysign(80, _ballDirection);
   }
-
+  */
   if (abs(_alpha) >= 200) {
     _alpha = std::copysign(200, _ballDirection);
   }
 
-  /*
   Serial.print(_alpha);
   Serial.print(" : ");
   Serial.print(_ballDistance);
   Serial.print(" : ");
   Serial.println(_ballDirection);
-  */
 
+  /*
   if ((_goalDirection > 0 && _alpha < 0) || (_goalDirection < 0 && _alpha > 0)) { //untested but should work
     _alpha = (360 - abs(_alpha)) % 360;
     if (_alpha > 180) {
       _alpha -= 360;
     }
   }
+
+   */
 
   return WrapAngle(_alpha);
 

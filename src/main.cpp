@@ -20,7 +20,7 @@ int latest_ballDirection;
 double Setpoint, Input, Output;            // for PID
 // double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // old pid
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; // very old
-double Kp = 0, Ki = 0, Kd = 0;
+double Kp = 0.25, Ki = 0.2, Kd = 0.03507;
 int latest_compass;
 int goalDirection;
 int flipp_switch = 1;
@@ -47,7 +47,7 @@ void setup() {
   adjustRotation.SetOutputLimits(-100, 100);
   Serial.println("Done!");
 
-  Serial.println("Waiting for Team Button Press...");
+  Serial.println("Finished Setup - Ready to go!");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void check_buttons() {
@@ -119,8 +119,8 @@ void loop() {
   {
     if (bot.hasBall == 1) {
       bot.boardled(1, GRUEN);
-      SAdd = goalDirection / 4;
-      bot.omnidrive(0, 1, -Output, 70);
+      SAdd = -goalDirection;
+      bot.omnidrive(0, 0, -Output, 70);
     }
     else {
       bot.boardled(1, ROT);
@@ -165,8 +165,6 @@ void loop() {
       Kp = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-    Serial.print(latest_compass);
-    Serial.print(" ");
-    Serial.println(Setpoint);
+    Serial.println(bot.goalDirection / 4);
   }
 }

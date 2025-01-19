@@ -27,7 +27,7 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
         return 180; // drive straight back to goal
   }
 
-  multiplier = (20 / static_cast<float>(_ballDistance)) * 2; // calculate multiplier based on distance
+  multiplier = (10 / static_cast<float>(_ballDistance)); // calculate multiplier based on distance
   multiplier = std::max(1.0f, std::min(multiplier, 4.0f)); // cap multiplier between 1 and 4
 
   if (abs(_ballDirection) <= 10) {

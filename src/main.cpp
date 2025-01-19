@@ -119,7 +119,7 @@ void loop() {
   {
     if (bot.hasBall == 1) {
       bot.boardled(1, GRUEN);
-      SAdd = -goalDirection;
+      SAdd = goalDirection;
       bot.omnidrive(0, 0, -Output, 70);
     }
     else {

@@ -20,7 +20,7 @@ int latest_ballDirection;
 double Setpoint, Input, Output;            // for PID
 // double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // old pid
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; // very old
-double Kp = 0.25, Ki = 0.2, Kd = 0.03507;
+double Kp = 0.155, Ki = 0.09, Kd = 0.027;
 int latest_compass;
 int goalDirection;
 int flipp_switch = 1;
@@ -44,7 +44,7 @@ void setup() {
 
   Setpoint = 0;   // PID setpoint
   adjustRotation.SetMode(AUTOMATIC);
-  adjustRotation.SetOutputLimits(-100, 100);
+  adjustRotation.SetOutputLimits(-40, 40);
   Serial.println("Done!");
 
   Serial.println("Finished Setup - Ready to go!");
@@ -165,6 +165,6 @@ void loop() {
       Kp = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-    Serial.println(bot.goalDirection / 4);
+    Serial.println(bot.ballDirection);
   }
 }

@@ -43,11 +43,11 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
   if (abs(_alpha) >= 200) {
     _alpha = std::copysign(200, _ballDirection);
   }
-
+  /*
   if ((_goalDirection > 0 && _alpha < 0) || (_goalDirection < 0 && _alpha > 0)) { //untested but should work
     _alpha *= -1;
   }
-
+  */
   Serial.print(_alpha);
   Serial.print(" : ");
   Serial.print(_ballDistance);

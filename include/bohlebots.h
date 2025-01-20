@@ -486,7 +486,7 @@ private:
     }
 
     lightgate = input(1);
-    if (lightgate > 3600) {
+    if (lightgate > 2500 && ballDirection < 25) {
       hasBall = 1;
     } else hasBall = 0;
   }

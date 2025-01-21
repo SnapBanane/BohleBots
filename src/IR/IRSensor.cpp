@@ -39,7 +39,7 @@ void I2C::IRModule::readModule() {
 void I2C::IRModule::calcBallVector() {
     double realDistance = abstractToWorldDistance(_distance);
     _direction = clip(_direction, 0, 64);
-    double radianDirection = (_direction + 2) / 64.0 * 2 * PI;
+    double radianDirection = (_direction + 1) / 64.0 * 2 * PI;
 
     //_ballVector = Vector2(std::sin(radianDirection) * realDistance, std::cos(radianDirection) * realDistance);
     _ballVector = Vector2(-std::cos(radianDirection) * realDistance, std::sin(radianDirection) * realDistance);
@@ -64,7 +64,7 @@ double I2C::IRModule::getDirection() {
     return std::atan2(_x, _y) * 180 / PI;
     */
     _direction = clip(_direction, 0, 64);
-    double x = ((_direction+2) * 360 / 64) - 180;
+    double x = ((_direction+1) * 360 / 64) - 180;
     x *= -1;
     if (abs(x) > 180) {
         x = std::copysign(180, x);

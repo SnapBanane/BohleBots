@@ -27,21 +27,29 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
         return 180; // drive straight back to goal
   }
 
-  multiplier = (10 / static_cast<float>(_ballDistance)); // calculate multiplier based on distance
+  multiplier = (15 / static_cast<float>(_ballDistance)); // calculate multiplier based on distance
   multiplier = std::max(1.0f, std::min(multiplier, 4.0f)); // cap multiplier between 1 and 4
-
-  if (abs(_ballDirection) <= 10) {
-    multiplier = 1;
-  }
 
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
 
+  /*
   if (abs(_alpha) >= (abs(_ballDirection) + 80)) {
     _alpha = _ballDirection + std::copysign(80, _ballDirection);
   }
-
-  if (abs(_alpha) >= 200) {
-    _alpha = std::copysign(200, _ballDirection);
+  */
+  if (abs(_alpha) >= 220) {
+    _alpha = std::copysign(220, _ballDirection);
+  }
+  /*
+  if (abs(_ballDirection) <= 60) {
+    if ((abs(_ballDirection) * 2) > 100)
+    {
+      _alpha = std::copysign(100, _ballDirection);
+    }
+  }
+  */
+  if (abs(_ballDirection) <= 23) {
+    _alpha = _ballDirection / 2;
   }
   /*
   if ((_goalDirection > 0 && _alpha < 0) || (_goalDirection < 0 && _alpha > 0)) { //untested but should work
@@ -50,7 +58,7 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
   */
   Serial.print(_alpha);
   Serial.print(" : ");
-  Serial.print(_ballDistance);
+  Serial.print(multiplier);
   Serial.print(" : ");
   Serial.println(_ballDirection);
 

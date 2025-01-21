@@ -12,7 +12,7 @@ namespace logic {
     private:
       bool lack_of_progress = false;
       int previousCompass = 0;
-      const unsigned long timerDuration = 1000; // after 1,5sec lack of progress is true (the rules say the ball gets reset after 3 sec)
+      const unsigned long timerDuration = 3000; // after 1,5sec lack of progress is true (the rules say the ball gets reset after 3 sec)
     };
 }
 #endif //LOP_H

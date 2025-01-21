@@ -117,10 +117,16 @@ void loop() {
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (modus == 2)  // Main || Play
   {
+    /*if (lop.check_lop(latest_compass)) {
+      SAdd = latest_compass+std::copysign(180, goalDirection);
+      bot.omnidrive(0, 0, -Output, 50);
+    }
+
+     */
     if (bot.hasBall == 1) {
       bot.boardled(1, GRUEN);
       SAdd = goalDirection;
-      bot.omnidrive(0, 0, -Output, 70);
+      bot.omnidrive(0, 1, -Output, 70);
     }
     else {
       bot.boardled(1, ROT);
@@ -166,6 +172,7 @@ void loop() {
       Kp = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-    Serial.println(bot.ballDirection);
+    //const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, bot.goalDirection);
+    Serial.println(bot.ballDistance);
   }
 }

@@ -5,7 +5,7 @@
 int previousCompass = 0;
 bool lack_of_progress = false;
 elapsedMillis timer;
-int threshold = 2;
+int threshold = 10;
 
 bool logic::lop::check_lop(int _compass) {
     if ((std::abs(_compass) - std::abs(previousCompass)) < threshold) {

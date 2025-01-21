@@ -126,6 +126,7 @@ void loop() {
       bot.boardled(1, ROT);
       const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, bot.goalDirection);
       bot.omnidrive(controller.get_x(static_cast<float>(driveAngle)), controller.get_y(static_cast<float>(driveAngle)), -Output, 50);
+      // divide x / factor
       SAdd = latest_compass;
     }
   }

@@ -79,7 +79,7 @@ void check_buttons() {
 void updateSensors() {
   bot.syncSensors();
   bot.my_signature = flipp_switch;
-  goalDirection = bot.goalDirection * -1;
+  if(bot.goalExists) goalDirection = -bot.goalDirection;
   latest_compass = bot.kompass();
   Input = SAdd;
   if (std::abs(Input) <= 1) {
@@ -117,20 +117,20 @@ void loop() {
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (modus == 2)  // Main || Play
   {
-    /*if (lop.check_lop(latest_compass)) {
-      SAdd = latest_compass+std::copysign(180, goalDirection);
-      bot.omnidrive(0, 0, -Output, 50);
+    int factor = 0;
+    if (lop.check_lop(latest_compass) && !bot.goalExists) {
+      factor = std::copysign(180, goalDirection);
     }
-
-     */
+    else lop.check_lop(latest_compass);
     if (bot.hasBall == 1) {
       bot.boardled(1, GRUEN);
-      SAdd = goalDirection;
-      bot.omnidrive(0, 1, -Output, 70);
+      SAdd = goalDirection + factor;
+      const float x_drive = controller.get_x(goalDirection);
+      bot.omnidrive(x_drive / 2, 1, -Output, 75);
     }
     else {
       bot.boardled(1, ROT);
-      const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, bot.goalDirection);
+      const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
       bot.omnidrive(controller.get_x(static_cast<float>(driveAngle)), controller.get_y(static_cast<float>(driveAngle)), -Output, 50);
       // divide x / factor
       SAdd = latest_compass;
@@ -172,7 +172,7 @@ void loop() {
       Kp = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-    //const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, bot.goalDirection);
-    Serial.println(bot.ballDistance);
+    const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
+    //Serial.println();
   }
 }

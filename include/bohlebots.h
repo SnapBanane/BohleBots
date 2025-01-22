@@ -500,6 +500,7 @@ private:
       int tor_breite = pixy.ccc.blocks[0].m_width;
       int tor_hoehe = pixy.ccc.blocks[0].m_height;
       // tor_entfernung_roh =  pixy.ccc.blocks[0].m_y-80;
+      /*
       int tor_entfernung_roh = pixy.ccc.blocks[0].m_y;
       goalDistance =
         (tor_entfernung_roh - tor_hoehe) / 4;  //-abs(tor_richtung)/10;
@@ -507,8 +508,10 @@ private:
         goalDistance = 0;
       if (goalDistance > 63)
         goalDistance = 63;
+      */
+      goalDistance = tor_hoehe;
+      //Serial.println(goalDistance); // Debug
     }
-    // Serial.println(goalDirection); // Debug
   }
 
   void pixy_read() {

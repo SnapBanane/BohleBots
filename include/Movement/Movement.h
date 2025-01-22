@@ -10,7 +10,7 @@
 class Movement {
 public:
     Movement(); // Constructor
-    int DriveToBall(int _ballDirection, int _ballDistance, int _goalDirection); // Calculate an angle to drive to the ball
+    int DriveToBall(int _ballDirection, int _ballDistance, int _goalDirection, int _goalDistance); // Calculate an angle to drive to the ball
 private:
     I2C::IRModule irModule; // Create an instance of the IRModule
     int WrapAngle(int _alpha); // Wrap the angle between -180 and 180

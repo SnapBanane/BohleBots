@@ -117,24 +117,26 @@ void loop() {
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (modus == 2)  // Main || Play
   {
-    int factor = 0;
-    if (lop.check_lop(latest_compass) && !bot.goalExists) {
-      factor = std::copysign(180, goalDirection);
-    }
-    else lop.check_lop(latest_compass);
-    if (bot.hasBall == 1) {
-      bot.boardled(1, GRUEN);
-      SAdd = goalDirection + factor;
-      const float x_drive = controller.get_x(goalDirection);
-      bot.omnidrive(x_drive / 2, 1, -Output, 75);
-    }
-    else {
-      bot.boardled(1, ROT);
-      const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
-      bot.omnidrive(controller.get_x(static_cast<float>(driveAngle)), controller.get_y(static_cast<float>(driveAngle)), -Output, 50);
-      // divide x / factor
-      SAdd = latest_compass;
-    }
+  	bot.boardled(2, GELB);
+  	int factor = 0;
+  	if (lop.check_lop(latest_compass) && !bot.goalExists) {
+    	factor = std::copysign(180, goalDirection);
+  	} else {
+    	lop.check_lop(latest_compass);
+  	}
+
+  	if (bot.hasBall == 1) {
+    	bot.boardled(1, GRUEN);
+    	SAdd = goalDirection + factor;
+    	const float x_drive = controller.get_x(goalDirection) / 2; // Initialize x_drive properly
+    	bot.omnidrive(x_drive, 1, -Output, 75); // Use initialized x_drive
+  	}
+  	else {
+    	bot.boardled(1, ROT);
+    	const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
+    	bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 50);
+    	SAdd = latest_compass;
+  	}
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

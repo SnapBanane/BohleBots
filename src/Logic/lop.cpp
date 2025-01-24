@@ -19,6 +19,6 @@ bool logic::lop::check_lop(int _compass) {
     }
 
     previousCompass = _compass;
-    Serial.println(lack_of_progress);
+    //Serial.println(lack_of_progress);
     return lack_of_progress;
 }

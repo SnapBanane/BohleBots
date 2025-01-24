@@ -54,14 +54,12 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
   }
   */
 
-  /*
   Serial.print(_alpha);
   Serial.print(" : ");
   Serial.print(multiplier);
   Serial.print(" : ");
   Serial.println(_ballDirection);
 
-   */
   return WrapAngle(_alpha);
 
 }

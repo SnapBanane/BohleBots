@@ -21,6 +21,7 @@ double Setpoint, Input, Output;            // for PID
 // double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // old pid
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; // very old
 double Kp = 0.155, Ki = 0.09, Kd = 0.027;
+int cycleCounter = 0;
 int latest_compass;
 int goalDirection;
 int flipp_switch = 1;
@@ -57,6 +58,8 @@ void check_buttons() {
   else if (bot.boardtast(3)) {
     modus = 2;
     bot.setze_kompass();
+    cycleCounter = 0;
+    bot.boardled(2, GELB);
   }
   else if (bot.boardtast(2)) {
     modus = 3;
@@ -112,12 +115,16 @@ void loop() {
   {
     bot.boardled(2, ROT);
     bot.fahre(0, 0, 0);
+    bot.motor(4, 0);
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (modus == 2)  // Main || Play
   {
-  	bot.boardled(2, GELB);
+    bot.motor(4, -50);
+    if (cycleCounter >= 30) { bot.boardled(2, AUS); bot.boardled(1, AUS); }
+    else { cycleCounter++; }
+  	//bot.boardled(2, GELB);
   	int factor = 0;
   	if (lop.check_lop(latest_compass) && !bot.goalExists) {
     	factor = std::copysign(180, goalDirection);
@@ -126,6 +133,7 @@ void loop() {
   	}
 
   	if (bot.hasBall == 1) {
+        bot.motor(4, -100);
     	bot.boardled(1, GRUEN);
     	SAdd = goalDirection + factor;
     	const float x_drive = controller.get_x(goalDirection) / 2; // Initialize x_drive properly
@@ -134,7 +142,8 @@ void loop() {
   	else {
     	bot.boardled(1, ROT);
     	const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
-    	bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 50);
+        Serial.println(driveAngle);
+    	bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), -Output, 50);
     	SAdd = latest_compass;
   	}
   }
@@ -145,11 +154,11 @@ void loop() {
     // Set LED
     bot.boardled(2, BLAU);
 
-    // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 60);
+    // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 35);
     // if (bot.goalExists==true) bot.omnidrive(0, 0, -Output, 60);  // test for PID
     // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50;
     // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
-    bot.omnidrive(0, 0, -Output, 100);
+    // bot.omnidrive(0, 1, -Output, 20);
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
@@ -175,6 +184,8 @@ void loop() {
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
     const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
-    //Serial.println();
+    // bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 20);
+    bot.motor(4, -100);
+    // Serial.println(bot.lightgate);
   }
 }

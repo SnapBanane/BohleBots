@@ -44,7 +44,7 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
     _alpha = std::copysign(220, _ballDirection);
   }
 
-  if (abs(_ballDirection) <= 23) { // if the ball is in front of the robot drive straight at it
+  if (abs(_ballDirection) <= 20) { // if the ball is in front of the robot drive straight at it
     _alpha = _ballDirection;
   }
 

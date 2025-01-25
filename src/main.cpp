@@ -126,25 +126,25 @@ void loop() {
     else { cycleCounter++; }
   	//bot.boardled(2, GELB);
   	int factor = 0;
-  	if (lop.check_lop(latest_compass) && !bot.goalExists) {
-    	factor = std::copysign(180, goalDirection);
+  	if (lop.check_lop(goalDirection) && !bot.goalExists) {
+    	factor = std::copysign(90, goalDirection);
   	} else {
-    	lop.check_lop(latest_compass);
+    	lop.check_lop(goalDirection);
   	}
 
   	if (bot.hasBall == 1) {
         bot.motor(4, -100);
     	bot.boardled(1, GRUEN);
     	SAdd = goalDirection + factor;
-    	const float x_drive = controller.get_x(goalDirection) / 2; // Initialize x_drive properly
-    	bot.omnidrive(x_drive, 1, -Output, 75); // Use initialized x_drive
+    	const float x_drive = controller.get_x(goalDirection) / 4; // Initialize x_drive properly
+    	bot.omnidrive(0, 1, -Output, 75); // Use initialized x_drive
   	}
   	else {
     	bot.boardled(1, ROT);
     	const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
         Serial.println(driveAngle);
-    	bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), -Output, 50);
-    	SAdd = latest_compass;
+    	bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), -Output, 60);
+    	SAdd = goalDirection;
   	}
   }
 
@@ -186,6 +186,6 @@ void loop() {
     const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
     // bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 20);
     bot.motor(4, -100);
-    // Serial.println(bot.lightgate);
+    Serial.println(bot.lightgate);
   }
 }

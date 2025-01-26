@@ -56,10 +56,16 @@ void check_buttons() {
     modus = 1;
   }
   else if (bot.boardtast(3)) {
-    modus = 2;
+    // set compass
     bot.setze_kompass();
+    // set light cycle counter and toggle led
     cycleCounter = 0;
     bot.boardled(2, GELB);
+    // hard reset PID
+    adjustRotation.SetMode(MANUAL);
+    adjustRotation.SetMode(AUTOMATIC);
+    // change to playing mode
+    modus = 2;
   }
   else if (bot.boardtast(2)) {
     modus = 3;
@@ -76,32 +82,32 @@ void check_buttons() {
               bot.boardled(1, BLAU);
           }
       }
-  }
-  while (bot.boardtast(1)) {
-    bot.warte(5);
+      while (bot.boardtast(1)) {
+          bot.warte(5);
+      }
   }
 }
 
 void updateSensors() {
-  bot.syncSensors();
-  bot.my_signature = flipp_switch;
-  goalDirection = -bot.goalDirection;
-  latest_compass = bot.kompass();
-  Input = SAdd;
-  if (std::abs(Input) <= 1) {
-    Input = 0;
-  }
-  if (!bot.goalExists) adjustRotation.Compute();
-  if (bot.ballExists == true) {  // update the ballDirection
-    if (latest_ballDirection != bot.ballDirection) {
-      latest_ballDirection = bot.ballDirection;
-    }
-  }
+    // update sensors
+    bot.syncSensors();
+    // update signature
+    bot.my_signature = flipp_switch;
+    // update to flipped goalDireciton and NOT flipped compass
+    if (bot.goalExists) { goalDirection = -bot.goalDirection; }
+    latest_compass = bot.kompass();
+    // input for pid
+    Input = SAdd;
+    if (std::abs(Input) <= 1) { Input = 0; }
+    // update PID
+    adjustRotation.Compute();
+	// update ballDirection
+    if (bot.ballExists) { latest_ballDirection = bot.ballDirection; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void loop() {
-  bot.warte(5);  // default delay || must be here for some reason
+  bot.warte(5);  // default delay for anti windup
 
   check_buttons();  // check for button updates
 
@@ -135,26 +141,25 @@ void loop() {
     if (cycleCounter >= 30) { bot.boardled(2, AUS); bot.boardled(1, AUS); }
     else { cycleCounter++; }
   	//lack of progress factor
-  	int factor = 0;
-  	if (lop.check_lop(goalDirection) && !bot.goalExists) {
-    	factor = std::copysign(90, goalDirection);
+  	float factor = 0;
+  	if (lop.check_lop(latest_compass) && !bot.goalExists) {
+    	factor = -1.5;
   	} else {
-    	lop.check_lop(goalDirection);
+    	lop.check_lop(latest_compass);
   	}
     // if hasBall drive to goal
   	if (bot.hasBall == 1) {
         bot.motor(4, -100);
     	bot.boardled(1, GRUEN);
-    	//SAdd = latest_compass / 8 + factor;
-    	const float x_drive = controller.get_x(goalDirection) / 4; // Initialize x_drive properly
-    	bot.omnidrive(0, 1, ANGLE, 75); // Use initialized x_drive
+    	SAdd = latest_compass;
+    	bot.omnidrive(0, 1 + factor, ANGLE, 75);
   	}
     //if not has ball try to get ball
   	else {
     	bot.boardled(1, ROT);
-    	const float driveAngle = static_cast<float>(Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
+    	const auto driveAngle = static_cast<float>(Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
     	bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 55);
-    	//SAdd = latest_compass;
+    	SAdd = latest_compass;
   	}
   }
 
@@ -168,7 +173,7 @@ void loop() {
     // if (bot.goalExists==true) bot.omnidrive(0, 0, -Output, 60);  // test for PID
     // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50;
     // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
-    bot.omnidrive(0, 0, static_cast<float>(latest_compass) / 180 * 25, 55);
+    // bot.omnidrive(0, 0, static_cast<float>(latest_compass) / 180 * 25, 55);
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);

@@ -56,6 +56,7 @@
 #include <elapsedMillis.h>
 #include <IR/IRSensor.hpp>
 Pixy2I2C pixy;
+Pixy2I2C pixy2;
 #define SDA 21
 #define SCL 22
 
@@ -108,6 +109,9 @@ public:
   int goalDirection = 0;
   int goalDistance = 0;
   bool goalExists = false;
+  int goalDirection2 = 0;
+  int goalDistance2 = 0;
+  bool goalExists2 = false;
   int my_signature;
   double botRotation = 0;
   double compassDirection = 0;
@@ -207,6 +211,9 @@ public:
     if (hatPixy) {
       Serial.print("Warte auf Pixy2 auf i2c 0x54...");
       pixy.init(0x54);
+      Serial.println("done");
+      Serial.print("Warte auf Pixy2 auf i2c 0x53...");
+      pixy.init(0x53);
       Serial.println("done");
     }
   }
@@ -483,6 +490,7 @@ private:
     }
     if (hatPixy) {
       pixy_read();
+      pixy_read2();
     }
 
     lightgate = input(1);
@@ -525,6 +533,47 @@ private:
       goalExists = true;
     } else {
       goalDirection = kompass();
+    }
+  }
+
+  void
+  pixy_auswerten2()  // wird nur aufgerufen, wenn die Pixy überhaupt etwas sieht
+  {
+    int sieht_farbe = pixy2.ccc.blocks[0].m_signature;
+    int sig;
+    if (my_signature == 1) { sig=2; }
+    else { sig=1; }
+    if (sieht_farbe == sig) {
+      goalDirection2 = (pixy2.ccc.blocks[0].m_x - 158) / 2;
+      int tor_breite = pixy2.ccc.blocks[0].m_width;
+      int tor_hoehe = pixy2.ccc.blocks[0].m_height;
+      // tor_entfernung_roh =  pixy.ccc.blocks[0].m_y-80;
+      /*
+      int tor_entfernung_roh = pixy.ccc.blocks[0].m_y;
+      goalDistance =
+        (tor_entfernung_roh - tor_hoehe) / 4;  //-abs(tor_richtung)/10;
+      if (goalDistance < 0)
+        goalDistance = 0;
+      if (goalDistance > 63)
+        goalDistance = 63;
+      */
+      goalDistance2 = tor_hoehe;
+      //Serial.println(goalDistance); // Debug
+    }
+  }
+
+  void pixy_read2() {
+    int i;
+    // grab blocks!
+    pixy2.ccc.getBlocks();
+    goalExists2 = false;
+    // If there are detect blocks, print them!
+    if (pixy2.ccc.numBlocks > 0) {
+      pixy_auswerten2();
+      goalExists2 = true;
+    } else
+    {
+      goalDirection2 = 444;
     }
   }
 

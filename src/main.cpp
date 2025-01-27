@@ -132,9 +132,10 @@ void loop() {
   {
     //choose ANGLE input
     float ANGLE;
-    if (bot.goalExists) ANGLE = static_cast<float>(goalDirection) / 5;
+    //if (bot.goalExists) ANGLE = static_cast<float>(goalDirection) / 5;
     //else if (bot.goalExists2) ANGLE = bot.goalDirection2 / 5;
-    else ANGLE = static_cast<float>(latest_compass) / 180 * 25;
+    //else ANGLE = static_cast<float>(latest_compass) / 180 * 25;
+    ANGLE = -Output;
     //set dribbler
     bot.motor(4, -100);
     //turn of leds
@@ -151,14 +152,14 @@ void loop() {
   	if (bot.hasBall == 1) {
         bot.motor(4, -100);
     	bot.boardled(1, GRUEN);
-    	SAdd = latest_compass;
-    	bot.omnidrive(0, 1 + factor, ANGLE, 75);
+    	SAdd = goalDirection / 5;
+    	bot.omnidrive(0, 1 + factor, goalDirection / 5, 75);
   	}
     //if not has ball try to get ball
   	else {
     	bot.boardled(1, ROT);
     	const auto driveAngle = static_cast<float>(Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
-    	bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 55);
+    	bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 50);
     	SAdd = latest_compass;
   	}
   }
@@ -200,7 +201,7 @@ void loop() {
     }
     // const int driveAngle = Drive.DriveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance);
     // bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 20);
-    // bot.motor(4, -100);
+    bot.motor(4, -100);
     Serial.print(bot.goalExists2);
     Serial.print(" : ");
     Serial.print(bot.goalDirection2);

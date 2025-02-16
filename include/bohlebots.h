@@ -212,11 +212,10 @@ public:
       Serial.print("Warte auf Pixy2 auf i2c 0x54...");
       pixy.init(0x54);
       Serial.println("done");
-      /*
+
       Serial.print("Warte auf Pixy2 auf i2c 0x53...");
-      pixy.init(0x53);
+      pixy2.init(0x53);
       Serial.println("done");
-      */
     }
   }
 
@@ -491,8 +490,8 @@ private:
       kompass_wert = kompass_lesen();
     }
     if (hatPixy) {
-      pixy_read();
-      //pixy_read2();
+      pixy_read(); // read front camera
+      pixy_read2(); // read back camera
     }
 
     lightgate = input(1);
@@ -507,6 +506,7 @@ private:
     int sieht_farbe = pixy.ccc.blocks[0].m_signature;
     if (sieht_farbe == my_signature) {
       goalDirection = (pixy.ccc.blocks[0].m_x - 158) / 2;
+      goalDirection *= -1;
       int tor_breite = pixy.ccc.blocks[0].m_width;
       int tor_hoehe = pixy.ccc.blocks[0].m_height;
       // tor_entfernung_roh =  pixy.ccc.blocks[0].m_y-80;
@@ -537,7 +537,7 @@ private:
       goalDirection = kompass();
     }
   }
-  /*
+
   void
   pixy_auswerten2()  // wird nur aufgerufen, wenn die Pixy überhaupt etwas sieht
   {
@@ -547,6 +547,7 @@ private:
     else { sig=1; }
     if (sieht_farbe == sig) {
       goalDirection2 = (pixy2.ccc.blocks[0].m_x - 158) / 2;
+      goalDirection2 *= -1;
       int tor_breite = pixy2.ccc.blocks[0].m_width;
       int tor_hoehe = pixy2.ccc.blocks[0].m_height;
       // tor_entfernung_roh =  pixy.ccc.blocks[0].m_y-80;
@@ -569,7 +570,7 @@ private:
       goalDirection2 = 444;
     }
   }
-  */
+
   void fahre2(int geschw, int dreh) {
     int maxs = abs(geschw) + abs(dreh);
     if (maxs > 100) {

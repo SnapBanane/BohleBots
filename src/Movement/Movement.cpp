@@ -7,12 +7,14 @@
 #include <Vector\Vector2.hpp>
 #include <IR\IRSensor.hpp>
 #include <Algorithm>
+#include <elapsedMillis.h>
 
 float multiplier;
+elapsedMillis timer_kickoff;
 
 Movement::Movement() : driveVector(0, 0) {} //init the vector to store globally
 
-int Movement::WrapAngle(int _alpha) {
+int Movement::wrapAngle(int _alpha) {
   int wrapped = (_alpha + 180) % 360;
   if (wrapped < 0) {
     wrapped += 360;
@@ -20,7 +22,7 @@ int Movement::WrapAngle(int _alpha) {
   return wrapped - 180;
 }
 
-int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, const int _goalDirection, const int _goalDistance)
+int Movement::driveToBall(const int _ballDirection, const int _ballDistance, const int _goalDirection, const int _goalDistance)
 {
   if (_ballDistance == 0) {
         Serial.println("Error: Division by zero in DriveToBall");
@@ -34,14 +36,14 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
   	multiplier = std::max(1.75f, std::min(multiplier, 4.0f));
   }
 
-  if (_goalDistance <= 20) { // prevent being stuck in goal
+  if (_goalDistance <= 24) { // prevent being stuck in goal
     return _ballDirection;
   }
 
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
 
   if (abs(_alpha) >= 220) { // prevent if the robot is confused because values are to high
-    _alpha = std::copysign(220, _ballDirection);
+    _alpha = std::copysign(220, static_cast<double>(_ballDirection));
   }
 
   if (abs(_ballDirection) <= 20) { // if the ball is in front of the robot drive straight at it
@@ -60,6 +62,18 @@ int Movement::DriveToBall(const int _ballDirection, const int _ballDistance, con
   Serial.print(" : ");
   Serial.println(_ballDirection);
 
-  return WrapAngle(_alpha);
+  return wrapAngle(_alpha);
 
 }
+
+int kickOff() // unused
+{
+    timer_kickoff = 0;
+    while (timer_kickoff < 2000)
+    {
+      return timer_kickoff;
+    }
+    return 0;
+}
+
+

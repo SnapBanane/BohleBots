@@ -177,7 +177,7 @@ void loop()
     {
       factor = -1.5;
       // if (!bot.goalExists) { factor2 = -std::copysign(60, bot.goalDirection2); }
-      factor2 = std::copysign(60, goalDirection);
+      factor2 = std::copysign(40, goalDirection);
     }
     else
     {
@@ -189,14 +189,13 @@ void loop()
       // bot.motor(4, -100);
       bot.boardled(1, GRUEN);
       SAdd = goalDirection / 5;
-      bot.omnidrive(0, 1 + factor, (static_cast<float>(goalDirection) / 5)+factor2, 75);
+      bot.omnidrive(0, 1 + factor, (goalDirection / 5) + factor2, 75);
     }
     // if not has ball try to get ball
     else
     {
       bot.boardled(1, ROT);
-      const auto driveAngle = static_cast<float>(
-      Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
+      const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
       bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 50);
       SAdd = latest_compass;
     }

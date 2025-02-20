@@ -14,7 +14,7 @@ elapsedMillis timer_kickoff;
 
 Movement::Movement() : driveVector(0, 0) {} //init the vector to store globally
 
-int Movement::wrapAngle(int _alpha) {
+int Movement::wrapAngle(const int _alpha) {
   int wrapped = (_alpha + 180) % 360;
   if (wrapped < 0) {
     wrapped += 360;
@@ -42,19 +42,13 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
 
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
 
+  if (abs(_ballDirection) <= 23) { // if the ball is in front of the robot drive straight at it
+    return _ballDirection;
+  }
+
   if (abs(_alpha) >= 220) { // prevent if the robot is confused because values are to high
     _alpha = std::copysign(220, static_cast<double>(_ballDirection));
   }
-
-  if (abs(_ballDirection) <= 20) { // if the ball is in front of the robot drive straight at it
-    _alpha = _ballDirection;
-  }
-
-  /*
-  if (!((_goalDirection < 0 && _ballDirection > 0) || (_goalDirection > 0 && _ballDirection < 0))) {
-    _alpha *= -1;
-  }
-  */
 
   Serial.print(_alpha);
   Serial.print(" : ");
@@ -63,7 +57,6 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
   Serial.println(_ballDirection);
 
   return wrapAngle(_alpha);
-
 }
 
 int kickOff() // unused

@@ -172,7 +172,7 @@ void loop()
     }
     // lack of progress factor
     float factor = 0;
-    float factor2 = 0;
+    float factor2 = goalDirection / 5;
     if (lop.check_lop(latest_compass) && !bot.goalExists)
     {
       factor = -1.5;
@@ -186,15 +186,14 @@ void loop()
     // if hasBall drive to goal
     if (bot.hasBall == 1)
     {
-      // bot.motor(4, -100);
-      bot.boardled(1, GRUEN);
+      //bot.boardled(1, GRUEN);
       SAdd = goalDirection / 5;
-      bot.omnidrive(0, 1 + factor, (goalDirection / 5) + factor2, 75);
+      bot.omnidrive(0, 1 + factor, factor2, 75);
     }
     // if not has ball try to get ball
     else
     {
-      bot.boardled(1, ROT);
+      //bot.boardled(1, ROT);
       const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
       bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 50);
       SAdd = latest_compass;

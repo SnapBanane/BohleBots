@@ -10,6 +10,7 @@
 BohleBots bot; // initiate the bot header
 Controller controller(bot); // initiate the pompeii header
 elapsedMillis fahrzeit;
+elapsedMillis kickoff;
 Movement Drive; // initiate the movement header
 logic::lop lop;
 
@@ -77,6 +78,12 @@ void check_buttons()
       adjustRotation.Compute();
     }
     // change to playing mode
+    /*
+    kickoff = 0;
+    while (kickoff < 1000) {
+      bot.omnidrive(0, 1, 0, 50);
+    }
+    */
     modus = 2;
   }
   else if (bot.boardtast(2))
@@ -188,14 +195,14 @@ void loop()
     {
       //bot.boardled(1, GRUEN);
       SAdd = goalDirection / 5;
-      bot.omnidrive(0, 1 + factor, factor2, 75);
+      bot.omnidrive(0, 1 + factor, factor2, 90);
     }
     // if not has ball try to get ball
     else
     {
       //bot.boardled(1, ROT);
       const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
-      bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 50);
+      bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 80);
       SAdd = latest_compass;
     }
   }
@@ -214,7 +221,7 @@ void loop()
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
-    // Serial.println(goalDirection);
+    Serial.println(bot.goalDistance);
     // Serial.print(" ");
     // Serial.print(Setpoint);
     // Serial.print(" ");

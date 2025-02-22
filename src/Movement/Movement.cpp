@@ -36,7 +36,7 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
   	multiplier = std::max(1.75f, std::min(multiplier, 4.0f));
   }
 
-  if (_goalDistance <= 24) { // prevent being stuck in goal
+  if (_goalDistance <= 20) { // prevent being stuck in goal
     return _ballDirection;
   }
 
@@ -62,9 +62,9 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
 int kickOff() // unused
 {
     timer_kickoff = 0;
-    while (timer_kickoff < 2000)
+    while (timer_kickoff < 1500)
     {
-      return timer_kickoff;
+      return 0;
     }
     return 0;
 }

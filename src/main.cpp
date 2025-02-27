@@ -16,12 +16,12 @@ logic::lop lop;
 
 // Ints, you know, change
 int modus = 0;
-const int MaxAngle_Drive = 5;
 int latest_ballDirection;
 double Setpoint, Input, Output; // for PID
 // double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // old pid
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; // very old
-double Kp = 0.155, Ki = 0.09, Kd = 0.027;
+// double Kp = 0.155, Ki = 0.09, Kd = 0.027; // PID SAVE NEW
+double Kp = 0.25, Ki = 0, Kd = 0.01;
 double ballSetpoint, ballInput, ballOutput;
 double ballKp = 0, ballKi = 0, ballKd = 0;
 int cycleCounter = 0;
@@ -218,14 +218,15 @@ void loop()
     // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50;
     // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
     // bot.omnidrive(0, 0, static_cast<float>(latest_compass) / 180 * 25, 55);
+    // bot.omnidrive(0, 1, static_cast<float>(goalDirection) / 5, 80);
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
-    Serial.println(bot.goalDistance);
+    // Serial.println(bot.goalDistance);
     // Serial.print(" ");
     // Serial.print(Setpoint);
     // Serial.print(" ");
-    // Serial.println(latest_ballDirection);
+    Serial.println(latest_ballDirection);
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
@@ -245,8 +246,10 @@ void loop()
     }
     // const int driveAngle = Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection,
     // bot.goalDistance); bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 20);
-    bot.motor(4, -100);
-    //Serial.println(bot.lightgate);
+    // bot.motor(4, -100);
+    // Serial.println(bot.lightgate);
+    bot.omnidrive(0, 0, -Output, 80);
+    SAdd = latest_compass;
     /*
       Serial.print(bot.goalExists2);
       Serial.print(" : ");

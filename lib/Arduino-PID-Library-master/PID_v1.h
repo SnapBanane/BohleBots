@@ -12,7 +12,7 @@ class PID
   #define DIRECT  0
   #define REVERSE  1
   #define P_ON_M 0
-  #define P_ON_E 1
+  #define P_ON_E 0 // default is 1
 
   //commonly used functions **************************************************************************
     PID(double*, double*, double*,        // * constructor.  links the PID to the Input, Output, and 

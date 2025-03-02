@@ -5,14 +5,17 @@
 #include <PID_v1.h>
 #include "bohlebots.h"
 #include "pompeii.h"
+#include "Logic/movingAverage.h"
 
 // Init bot
 BohleBots bot; // initiate the bot header
 Controller controller(bot); // initiate the pompeii header
 elapsedMillis fahrzeit;
 elapsedMillis kickoff;
+elapsedMicros t;
 Movement Drive; // initiate the movement header
 logic::lop lop;
+movingAverage mA;
 
 // Ints, you know, change
 int modus = 0;
@@ -21,7 +24,7 @@ double Setpoint, Input, Output; // for PID
 // double Kp = 0.325, Ki = 0.2, Kd = 0.0276;  // old pid
 // double Kp = 0.35, Ki = 1.5, Kd = 0.1; // very old
 // double Kp = 0.155, Ki = 0.09, Kd = 0.027; // PID SAVE NEW
-double Kp = 0.25, Ki = 0, Kd = 0.01;
+double Kp = 0.25, Ki = 0, Kd = 0.0325;
 double ballSetpoint, ballInput, ballOutput;
 double ballKp = 0, ballKi = 0, ballKd = 0;
 int cycleCounter = 0;
@@ -50,7 +53,7 @@ void setup()
 
   Setpoint = 0; // PID setpoint
   adjustRotation.SetMode(AUTOMATIC);
-  adjustRotation.SetOutputLimits(-40, 40);
+  adjustRotation.SetOutputLimits(-20, 20);
   ballSetpoint = 0;
   ballPID.SetMode(AUTOMATIC);
   ballPID.SetOutputLimits(0, 1);
@@ -113,14 +116,41 @@ void check_buttons()
   }
 }
 
+int calcOffsetPoint(int x, int y)
+{
+  const int _x = abs(x);
+  const int _y = abs(y);
+
+  if (_x > _y)
+  {
+    int _z = std::copysign(_x - _y, x);
+    return _z;
+  }
+  int _z = std::copysign(_y - _x, x);
+  return _z;
+}
+
 void updateSensors()
 {
   // update signature
   bot.my_signature = flipp_switch;
   latest_compass = bot.kompass();
+
+  //if (bot.goalExists && bot.goalExists2) { mA.add(calcOffsetPoint(goalDirection / 5, bot.goalDirection2 / 5)); }
+  if (bot.goalExists) { mA.add(bot.goalDirection / 5); }
+  if (!bot.goalExists && bot.goalExists2) { mA.add(bot.goalDirection2 / 5); }
+  if (!bot.goalExists && !bot.goalExists2) { mA.add(latest_compass); }
+  //mA.add(latest_compass);
+
   if (bot.goalExists) { goalDirection = bot.goalDirection; }
+  Serial.print(bot.goalExists);
+  Serial.print(" : ");
+  Serial.print(bot.goalExists2);
+  Serial.print(" : ");
+  Serial.println(mA.getAverage());
+
   // input for pid
-  Input = SAdd;
+  Input = mA.getAverage();
   if (std::abs(Input) <= 1)
   {
     Input = 0;
@@ -138,6 +168,8 @@ void updateSensors()
 void loop()
 {
   bot.warte(5); // default delay for anti windup
+
+  t = 0;
 
   check_buttons(); // check for button updates
 
@@ -164,7 +196,7 @@ void loop()
     // if (bot.goalExists) ANGLE = static_cast<float>(goalDirection) / 5;
     // else if (bot.goalExists2) ANGLE = bot.goalDirection2 / 5;
     // else ANGLE = static_cast<float>(latest_compass) / 180 * 25;
-    float ANGLE = -Output;
+    float ANGLE = -Output ;
     // set dribbler
     bot.motor(4, -100);
     // turn of leds
@@ -203,8 +235,10 @@ void loop()
       //bot.boardled(1, ROT);
       const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
       bot.omnidrive(controller.get_x(driveAngle), controller.get_y(driveAngle), ANGLE, 80);
+      // bot.omnidrive(0, 0, -Output, 80);
       SAdd = latest_compass;
     }
+    //Serial.println(t);
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,6 +246,8 @@ void loop()
   {
     // Set LED
     bot.boardled(2, BLAU);
+
+    // Serial.println(bot.ballDirection);
 
     // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 35);
     // if (bot.goalExists==true) bot.omnidrive(0, 0, -Output, 60);  // test for PID
@@ -226,7 +262,7 @@ void loop()
     // Serial.print(" ");
     // Serial.print(Setpoint);
     // Serial.print(" ");
-    Serial.println(latest_ballDirection);
+    // Serial.println(latest_ballDirection);
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
@@ -248,8 +284,8 @@ void loop()
     // bot.goalDistance); bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 20);
     // bot.motor(4, -100);
     // Serial.println(bot.lightgate);
-    bot.omnidrive(0, 0, -Output, 80);
-    SAdd = latest_compass;
+    //bot.omnidrive(0, 0, -Output, 80);
+    //SAdd = goalDirection;
     /*
       Serial.print(bot.goalExists2);
       Serial.print(" : ");
@@ -259,5 +295,11 @@ void loop()
       Serial.print(" : ");
       Serial.println(bot.goalDirection);
     */
+    // Serial.println(mA.getAverage());
+    // Serial.println(t);
+    Serial.println(bot.ballDirection);
+    // Serial.print(" : ");
+    // Serial.println(bot.ballDistance);
+    // bot.kick(10);
   }
 }

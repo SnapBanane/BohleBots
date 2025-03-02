@@ -42,7 +42,7 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
 
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
 
-  if (abs(_ballDirection) <= 23) { // if the ball is in front of the robot drive straight at it
+  if (abs(_ballDirection) <= 28) { // if the ball is in front of the robot drive straight at it
     return _ballDirection;
   }
 

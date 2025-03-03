@@ -50,11 +50,13 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
     _alpha = std::copysign(220, static_cast<double>(_ballDirection));
   }
 
+  /*
   Serial.print(_alpha);
   Serial.print(" : ");
   Serial.print(multiplier);
   Serial.print(" : ");
   Serial.println(_ballDirection);
+  */
 
   return wrapAngle(_alpha);
 }

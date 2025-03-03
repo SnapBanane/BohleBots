@@ -530,11 +530,11 @@ private:
     pixy.ccc.getBlocks();
     goalExists = false;
     // If there are detect blocks, print them!
-    if (pixy.ccc.numBlocks) {
+    if (pixy.ccc.numBlocks > 0 && pixy.ccc.blocks[0].m_signature == my_signature) {
       pixy_auswerten();
       goalExists = true;
     } else {
-      goalDirection = kompass();
+      goalDirection = 444;
     }
   }
 
@@ -562,7 +562,10 @@ private:
     pixy2.ccc.getBlocks();
     goalExists2 = false;
     // If there are detect blocks, print them!
-    if (pixy2.ccc.numBlocks > 0) {
+    int sig2;
+    if (my_signature == 1) { sig2=2; }
+    else { sig2=1; }
+    if (pixy2.ccc.numBlocks > 0 && pixy2.ccc.blocks[0].m_signature == sig2) {
       pixy_auswerten2();
       goalExists2 = true;
     } else

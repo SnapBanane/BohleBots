@@ -203,25 +203,22 @@ void loop()
     {
       lop.check_lop(latest_compass);
     }
-    // if hasBall drive to goal
     if (bot.hasBall == 1)
     {
       //bot.boardled(1, GRUEN);
       bot.omnidrive(0, 1 + factor, factor2, 75);
     }
-    // if not has ball try to get ball
     else
     {
       //bot.boardled(1, ROT);
       const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
 
       float x = 0;
-      if (bot.ballDirection < 45 && bot.ballDirection > -45) { x = -ballOutput; }
+      if (bot.ballDirection < 60 && bot.ballDirection > -60 ) { x = static_cast<float>(-ballOutput); }
       else x = controller.get_x(driveAngle);
 
       bot.omnidrive(x, controller.get_y(driveAngle), -Output, 60);
     }
-    //Serial.println(t);
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -239,7 +236,7 @@ void loop()
     // Serial.print(" ");
     // Serial.print(Setpoint);
     // Serial.print(" ");
-    // Serial.println(latest_ballDirection);
+    Serial.println(latest_ballDirection);
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
@@ -259,6 +256,8 @@ void loop()
       Serial.print(" : ");
       Serial.println(bot.goalDirection);
     */
+    // const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
     // bot.kick(10);
+    // Serial.print("Huhu");
   }
 }

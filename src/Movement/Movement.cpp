@@ -36,13 +36,18 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
   	multiplier = std::max(1.75f, std::min(multiplier, 4.0f));
   }
 
+  if (abs(_ballDirection) >= 100)
+  {
+    multiplier = std::max(1.3f, std::min(multiplier, 4.0f));
+  }
+
   if (_goalDistance <= 24) { // prevent being stuck in goal
     return _ballDirection;
   }
 
   int _alpha = static_cast<int>(static_cast<float>(_ballDirection) * multiplier); // Calculate the angle to drive to the ball
 
-  if (abs(_ballDirection) <= 28) { // if the ball is in front of the robot drive straight at it
+  if (abs(_ballDirection) <= 24) { // if the ball is in front of the robot drive straight at it
     return _ballDirection;
   }
 
@@ -50,13 +55,11 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
     _alpha = std::copysign(220, static_cast<double>(_ballDirection));
   }
 
-  /*
   Serial.print(_alpha);
   Serial.print(" : ");
   Serial.print(multiplier);
   Serial.print(" : ");
   Serial.println(_ballDirection);
-  */
 
   return wrapAngle(_alpha);
 }

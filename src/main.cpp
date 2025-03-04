@@ -81,7 +81,6 @@ void check_buttons()
       Input = 0;
       adjustRotation.Compute();
     }
-    // change to playing mode
     /*
     kickoff = 0;
     while (kickoff < 1000) {
@@ -117,24 +116,6 @@ void check_buttons()
   }
 }
 
-int calcOffsetPoint(int goalDirection1, int goalDistance1, int goalDirection2, int goalDistance2, int compassDirection) {
-  // Calculate the raw offset between the two goal directions
-  int rawOffset = goalDirection1 - goalDirection2;
-
-  // Adjust the offset using the goal distances
-  int distanceFactor = (goalDistance1 + goalDistance2) / 2;
-  int adjustedOffset = rawOffset * distanceFactor / 100;
-
-  // Correct the offset using the compass direction
-  int correctedOffset = adjustedOffset + compassDirection;
-
-  // Normalize the corrected offset to be within -180 to 180 degrees
-  correctedOffset = fmod(correctedOffset + 360, 360);
-  if (correctedOffset > 180) correctedOffset -= 360;
-
-  return correctedOffset;
-}
-
 void updateSensors()
 {
   // update signature
@@ -156,31 +137,13 @@ void updateSensors()
   mA.add(latest_compass);
 
   if (abs(goalDirection) < 5 && abs(goalDirection2) < 5) { bot.setze_kompass(); }
-  /*
-  Serial.print(goalDirection);
-  Serial.print(" : ");
-  Serial.println(bot.goalExists);
-  Serial.print(goalDirection2);
-  Serial.print(" : ");
-  Serial.println(bot.goalExists2);
-  Serial.print(latest_compass);
-  Serial.print(" : ");
-  Serial.println(mA.getAverage());
-  */
   // input for pid
   Input = mA.getAverage();
-  if (std::abs(Input) <= 1)
-  {
-    Input = 0;
-  }
+  if (std::abs(Input) <= 1) { Input = 0; }
   // update PID
   adjustRotation.Compute();
   // update ballDirection
-  if (bot.ballExists)
-  {
-    latest_ballDirection = bot.ballDirection;
-  }
-
+  if (bot.ballExists) { latest_ballDirection = bot.ballDirection; }
   int factor;
   if (bot.ballDirection < 45 && bot.ballDirection > -45) { factor = bot.ballDirection; }
   else factor = 0;
@@ -216,12 +179,6 @@ void loop()
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (modus == 2) // Main || Play
   {
-    // choose ANGLE input
-    // if (bot.goalExists) ANGLE = static_cast<float>(goalDirection) / 5;
-    // else if (bot.goalExists2) ANGLE = bot.goalDirection2 / 5;
-    // else ANGLE = static_cast<float>(latest_compass) / 180 * 25;
-    float ANGLE = -Output ;
-    // set dribbler
     bot.motor(4, -100);
     // turn of leds
     if (cycleCounter >= 30)
@@ -250,20 +207,19 @@ void loop()
     if (bot.hasBall == 1)
     {
       //bot.boardled(1, GRUEN);
-      SAdd = goalDirection / 5;
-      bot.omnidrive(0, 1 + factor, factor2, 70);
+      bot.omnidrive(0, 1 + factor, factor2, 75);
     }
     // if not has ball try to get ball
     else
     {
       //bot.boardled(1, ROT);
       const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
+
       float x = 0;
       if (bot.ballDirection < 45 && bot.ballDirection > -45) { x = -ballOutput; }
       else x = controller.get_x(driveAngle);
-      bot.omnidrive(x, controller.get_y(driveAngle), ANGLE, 60);
-      // bot.omnidrive(0, 0, -Output, 80);
-      SAdd = latest_compass;
+
+      bot.omnidrive(x, controller.get_y(driveAngle), -Output, 60);
     }
     //Serial.println(t);
   }
@@ -274,12 +230,6 @@ void loop()
     // Set LED
     bot.boardled(2, BLAU);
 
-    // Serial.println(bot.ballDirection);
-
-    // bot.omnidrive(controller.get_x(latest_ballDirection), controller.get_y(latest_ballDirection), -Output, 35);
-    // if (bot.goalExists==true) bot.omnidrive(0, 0, -Output, 60);  // test for PID
-    // bot.omnidrive(controller.get_x(bot.ballDirection),controller.get_y(bot.ballDirection),-Output,50;
-    // bot.omnidrive(controller.get_x(angle), controller.get_y(angle), -Output, 50);
     // bot.omnidrive(0, 0, static_cast<float>(latest_compass) / 180 * 25, 55);
     // bot.omnidrive(0, 1, static_cast<float>(goalDirection) / 5, 80);
 
@@ -293,13 +243,6 @@ void loop()
     // Serial.print(bot.hasBall);
     // Serial.print(" : ");
     // Serial.println(bot.lightgate);
-    // Serial.print(controller.get_x(bot.ballDirection));
-    // Serial.print(" : ");
-    // Serial.println(controller.get_y(bot.ballDirection));
-    // Serial.print(" : ");
-    // Serial.println(Setpoint);
-    // Serial.print(" : ");
-    // Serial.println(cycleCounter);
     if (Serial.available() > 0)
     {
       String input = Serial.readStringUntil('\n');
@@ -307,12 +250,6 @@ void loop()
       Kp = input.toFloat();
       adjustRotation.SetTunings(Kp, Ki, Kd);
     }
-    // const int driveAngle = Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection,
-    // bot.goalDistance); bot.omnidrive(controller.get_y(driveAngle), controller.get_x(driveAngle), -Output, 20);
-    // bot.motor(4, -100);
-    // Serial.println(bot.lightgate);
-    // bot.omnidrive(0, 0, -Output, 80);
-    //SAdd = goalDirection;
     /*
       Serial.print(bot.goalDistance2);
       Serial.print(" : ");
@@ -322,16 +259,6 @@ void loop()
       Serial.print(" : ");
       Serial.println(bot.goalDirection);
     */
-    // Serial.println(mA.getAverage());
-    // Serial.println(t);
-    Serial.print(bot.ballDirection);
-    Serial.print(" : ");
-    // const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
-    // bot.omnidrive(-ballOutput, 0, -Output, 60);
-    // SAdd = latest_compass;
-    Serial.println(ballOutput);
-    // Serial.print(" : ");
-    // Serial.println(bot.ballDistance);
     // bot.kick(10);
   }
 }

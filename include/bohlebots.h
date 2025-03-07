@@ -469,6 +469,7 @@ private:
     Vector2 ballVector = irModule.getBallVector();
     ballDirection = irModule.getDirection();
     ballDistance = irModule.getDistance();
+    Serial.println(ballDistance);
     //ballDistance = ballVector.getMagnitude();
     /*
     ballDistance -= 60;
@@ -495,7 +496,7 @@ private:
     }
 
     lightgate = input(1);
-    if (lightgate > 3500 && ballDirection < 25) {
+    if (lightgate > 3800 && ballDirection < 25) {
       hasBall = 1;
     } else hasBall = 0;
   }

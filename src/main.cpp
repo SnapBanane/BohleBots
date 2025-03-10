@@ -26,7 +26,7 @@ double Setpoint, Input, Output; // for PID
 // double Kp = 0.155, Ki = 0.09, Kd = 0.027; // PID SAVE NEW
 double Kp = 0.2, Ki = 0, Kd = 0.035;
 double ballSetpoint, ballInput, ballOutput;
-double ballKp = 0.01, ballKi = 0, ballKd = 0.0015;
+double ballKp = 0.015, ballKi = 0, ballKd = 0.0020;
 int cycleCounter = 0;
 int latest_compass;
 int goalDirection;
@@ -36,7 +36,7 @@ int SAdd;
 
 // Init PID
 PID adjustRotation(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
-PID ballPID(&ballInput, &ballOutput, &ballSetpoint, ballKp, ballKi, ballKd, P_ON_M, DIRECT);
+PID ballPID(&ballInput, &ballOutput, &ballSetpoint, ballKp, ballKi, ballKd, DIRECT);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void setup()
 {
@@ -145,7 +145,7 @@ void updateSensors()
   // update ballDirection
   if (bot.ballExists) { latest_ballDirection = bot.ballDirection; }
   int factor;
-  if (bot.ballDirection < 80 && bot.ballDirection > -80) { factor = bot.ballDirection; }
+  if (bot.ballDirection < 90 && bot.ballDirection > -90) { factor = bot.ballDirection; }
   else factor = 0;
   ballInput = factor;
   ballPID.Compute();
@@ -206,7 +206,7 @@ void loop()
     if (bot.hasBall == 1)
     {
       //bot.boardled(1, GRUEN);
-      bot.omnidrive(0, 1 + factor, factor2, 75);
+      bot.omnidrive(0, 1 + factor, factor2, 80);
     }
     else
     {
@@ -214,10 +214,10 @@ void loop()
       const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
 
       float x = 0;
-      if (bot.ballDirection < 80 && bot.ballDirection > -80 ) { x = static_cast<float>(-ballOutput); }
+      if (bot.ballDirection < 90 && bot.ballDirection > -90 ) { x = static_cast<float>(-ballOutput); }
       else x = controller.get_x(driveAngle);
 
-      bot.omnidrive(x, controller.get_y(driveAngle), -Output, 60);
+      bot.omnidrive(x, controller.get_y(driveAngle), -Output, 70);
     }
   }
 
@@ -229,7 +229,7 @@ void loop()
 
     // bot.omnidrive(0, 0, static_cast<float>(latest_compass) / 180 * 25, 55);
     // bot.omnidrive(0, 1, static_cast<float>(goalDirection) / 5, 80);
-    bot.omnidrive(-ballOutput, 0, -Output, 60);
+    // bot.omnidrive(-ballOutput, 0, -Output, 60);
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
@@ -260,6 +260,6 @@ void loop()
     // const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
     // bot.kick(10);
     // Serial.print("Huhu");
-    // bot.motor(4, -75);
+    bot.motor(4, -75);
   }
 }

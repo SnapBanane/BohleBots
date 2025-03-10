@@ -35,8 +35,8 @@ void I2C::IRModule::readModule() {
         _distance = Wire.read();
     }
 
-    Serial.println(_direction);
-    Serial.println(_distance);
+    //Serial.println(_direction);
+    //Serial.println(_distance);
 }
 
 void I2C::IRModule::calcBallVector() {
@@ -67,7 +67,7 @@ double I2C::IRModule::getDirection() {
     return std::atan2(_x, _y) * 180 / PI;
     */
     _direction = clip(_direction, 0, 64);
-    double x = ((_direction-1) * 360.0 / 64.0) - 180;
+    double x = ((_direction+1) * 360.0 / 64.0) - 180;
     x *= -1;
     if (abs(x) > 180) {
         x = std::copysign(180, x);
@@ -78,9 +78,10 @@ double I2C::IRModule::getDirection() {
 
 double I2C::IRModule::getDistance() {
   if ( _distance == 0 ) { return 0; }
-  int i = _distance - 50;
-  if (i < 1) { return 1; }
+  int i = _distance - 33;
+  if (i < 1) { i = 1; }
   return i;
+
 /*
     int d = 0;
     d = _distance;

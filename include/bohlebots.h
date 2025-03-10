@@ -469,7 +469,7 @@ private:
     Vector2 ballVector = irModule.getBallVector();
     ballDirection = irModule.getDirection();
     ballDistance = irModule.getDistance();
-    Serial.println(ballDistance);
+    //Serial.println(ballDistance);
     //ballDistance = ballVector.getMagnitude();
     /*
     ballDistance -= 60;

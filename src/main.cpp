@@ -206,7 +206,7 @@ void loop()
     if (bot.hasBall == 1)
     {
       //bot.boardled(1, GRUEN);
-      bot.omnidrive(0, 1 + factor, factor2, 80);
+      bot.omnidrive(0, 1 + factor, factor2, 90);
     }
     else
     {
@@ -217,7 +217,7 @@ void loop()
       if (bot.ballDirection < 90 && bot.ballDirection > -90 ) { x = static_cast<float>(-ballOutput); }
       else x = controller.get_x(driveAngle);
 
-      bot.omnidrive(x, controller.get_y(driveAngle), -Output, 70);
+      bot.omnidrive(x, controller.get_y(driveAngle), -Output, 80);
     }
   }
 

@@ -206,7 +206,7 @@ void loop()
     if (bot.hasBall == 1)
     {
       //bot.boardled(1, GRUEN);
-      bot.omnidrive(0, 1 + factor, factor2, 85);
+      bot.omnidrive(0, 1 + factor, factor2, 80);
     }
     else
     {
@@ -218,7 +218,7 @@ void loop()
       else x = controller.get_x(driveAngle);
 
       double y = 0;
-      if (bot.ballDirection > 110 || bot.ballDirection < -110) { y = -1 * (static_cast<double>(bot.ballDistance) / 12); }
+      if (bot.ballDirection > 130 || bot.ballDirection < -130) { y = controller.get_y(driveAngle) * (static_cast<double>(bot.ballDistance) / 12); }
       else y = controller.get_y(driveAngle);
 
       bot.omnidrive(x, y, -Output, 70);

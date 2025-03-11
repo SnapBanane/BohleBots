@@ -145,7 +145,7 @@ void updateSensors()
   // update ballDirection
   if (bot.ballExists) { latest_ballDirection = bot.ballDirection; }
   int factor;
-  if (bot.ballDirection < 90 && bot.ballDirection > -90) { factor = bot.ballDirection; }
+  if (bot.ballDirection < 80 && bot.ballDirection > -80) { factor = bot.ballDirection; }
   else factor = 0;
   ballInput = factor;
   ballPID.Compute();
@@ -206,18 +206,22 @@ void loop()
     if (bot.hasBall == 1)
     {
       //bot.boardled(1, GRUEN);
-      bot.omnidrive(0, 1 + factor, factor2, 90);
+      bot.omnidrive(0, 1 + factor, factor2, 85);
     }
     else
     {
       //bot.boardled(1, ROT);
       const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
 
-      float x = 0;
-      if (bot.ballDirection < 90 && bot.ballDirection > -90 ) { x = static_cast<float>(-ballOutput); }
+      double x = 0;
+      if (bot.ballDirection < 80 && bot.ballDirection > -80 ) { x = -ballOutput; }
       else x = controller.get_x(driveAngle);
 
-      bot.omnidrive(x, controller.get_y(driveAngle), -Output, 80);
+      double y = 0;
+      if (bot.ballDirection > 110 || bot.ballDirection < -110) { y = -1 * (static_cast<double>(bot.ballDistance) / 12); }
+      else y = controller.get_y(driveAngle);
+
+      bot.omnidrive(x, y, -Output, 70);
     }
   }
 
@@ -233,7 +237,7 @@ void loop()
 
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
-    // Serial.println(bot.goalDistance);
+    Serial.println(bot.ballDistance);
     // Serial.print(" ");
     // Serial.print(Setpoint);
     // Serial.print(" ");

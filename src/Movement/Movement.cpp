@@ -29,7 +29,7 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
         return 180; // drive straight back to goal
   }
 
-  multiplier = (13 / static_cast<float>(_ballDistance)); // calculate multiplier based on distance
+  multiplier = (15 / static_cast<float>(_ballDistance)); // calculate multiplier based on distance
   multiplier = std::max(1.0f, std::min(multiplier, 4.0f)); // cap multiplier between 1 and 4
 
   if (abs(_ballDirection) <= 100 && abs(_ballDirection) >= 24) { //make sure the robot curves the ball
@@ -41,7 +41,7 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
     multiplier = std::max(1.3f, std::min(multiplier, 4.0f));
   }
 
-  if (_goalDistance <= 24) { // prevent being stuck in goal
+  if (_goalDistance <= 18) { // prevent being stuck in goal
     return _ballDirection;
   }
 

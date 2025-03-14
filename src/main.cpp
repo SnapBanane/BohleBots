@@ -206,7 +206,7 @@ void loop()
     if (bot.hasBall == 1)
     {
       //bot.boardled(1, GRUEN);
-      bot.omnidrive(0, 1 + factor, factor2, 80);
+      bot.omnidrive(0, 1 + factor, factor2, 90);
     }
     else
     {
@@ -221,7 +221,7 @@ void loop()
       if (bot.ballDirection > 130 || bot.ballDirection < -130) { y = controller.get_y(driveAngle) * (static_cast<double>(bot.ballDistance) / 12); }
       else y = controller.get_y(driveAngle);
 
-      bot.omnidrive(x, y, -Output, 70);
+      bot.omnidrive(x, y, -Output, 80);
     }
   }
 
@@ -236,8 +236,8 @@ void loop()
     // bot.omnidrive(-ballOutput, 0, -Output, 60);
 
     // Output for serial plotter (no text, just values)
-    // Serial.println(latest_compass);
-    Serial.println(bot.ballDistance);
+    Serial.println(latest_compass);
+    // Serial.println(bot.ballDistance);
     // Serial.print(" ");
     // Serial.print(Setpoint);
     // Serial.print(" ");

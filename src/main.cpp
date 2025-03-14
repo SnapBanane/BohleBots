@@ -16,6 +16,7 @@ elapsedMicros t;
 Movement Drive; // initiate the movement header
 logic::lop lop;
 movingAverage mA;
+movingAverage bA;
 
 // Ints, you know, change
 int modus = 0;
@@ -135,15 +136,16 @@ void updateSensors()
   }
   */
   mA.add(latest_compass);
+  bA.add(latest_ballDirection);
 
   if (abs(goalDirection) < 5 && abs(goalDirection2) < 5) { bot.setze_kompass(); }
-  // input for pid
+
   Input = mA.getAverage();
   if (std::abs(Input) <= 1) { Input = 0; }
-  // update PID
   adjustRotation.Compute();
-  // update ballDirection
-  if (bot.ballExists) { latest_ballDirection = bot.ballDirection; }
+
+  if (bot.ballExists) { latest_ballDirection = static_cast<int>(bA.getAverage()); }
+
   int factor;
   if (bot.ballDirection < 80 && bot.ballDirection > -80) { factor = bot.ballDirection; }
   else factor = 0;
@@ -192,12 +194,12 @@ void loop()
     }
     // lack of progress factor
     float factor = 0;
-    float factor2 = goalDirection / 5;
+    float factor2 = static_cast<float>(goalDirection) / 5;
     if (lop.check_lop(latest_compass) && !bot.goalExists)
     {
       factor = -1.5;
       // if (!bot.goalExists) { factor2 = -std::copysign(60, bot.goalDirection2); }
-      factor2 = std::copysign(40, goalDirection);
+      factor2 = static_cast<float>(std::copysign(40, goalDirection));
     }
     else
     {
@@ -236,7 +238,7 @@ void loop()
     // bot.omnidrive(-ballOutput, 0, -Output, 60);
 
     // Output for serial plotter (no text, just values)
-    Serial.println(latest_compass);
+    // Serial.println(latest_compass);
     // Serial.println(bot.ballDistance);
     // Serial.print(" ");
     // Serial.print(Setpoint);

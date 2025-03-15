@@ -252,6 +252,8 @@ void loop()
     // bot.omnidrive(0, 1, static_cast<float>(goalDirection) / 5, 80);
     // bot.omnidrive(-ballOutput, 0, -Output, 60);
 
+    bot.motor(4, -100);
+
     // Output for serial plotter (no text, just values)
     // Serial.println(latest_compass);
     // Serial.println(bot.ballDistance);
@@ -281,7 +283,7 @@ void loop()
     // const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
     // bot.kick(10);
     // Serial.print("Huhu");
-    kick(10);
+    // kick(10);
   }
 }
 // pompeii end

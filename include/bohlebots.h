@@ -315,8 +315,7 @@ public:
       head = kompass_org();
     }
   }
-  bool taster(int device,
-              int nr)  // liefert von device Taster nr (1:links, 2:rechts)
+  bool taster(int device, int nr)  // liefert von device Taster nr (1:links, 2:rechts)
   {
     if (device < 0)
       return false;

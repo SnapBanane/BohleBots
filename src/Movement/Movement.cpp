@@ -41,7 +41,7 @@ int Movement::driveToBall(const int _ballDirection, const int _ballDistance, con
     multiplier = std::max(1.3f, std::min(multiplier, 4.0f));
   }
 
-  if (_goalDistance <= 18) { // prevent being stuck in goal
+  if (_goalDistance <= 5) { // prevent being stuck in goal
     return _ballDirection;
   }
 

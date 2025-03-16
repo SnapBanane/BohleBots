@@ -189,56 +189,63 @@ void loop()
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   if (modus == 2) // Main || Play
   {
-    //bot.motor(4, -100);
-    // turn of leds
-    double turn = static_cast<double>(goalDirection) / 5;
-    if (cycleCounter >= 30)
+    if (bot.ballDistance == 21)
     {
-      bot.boardled(2, AUS);
-      bot.boardled(1, AUS);
+      if (bot.goalDistance2 < 30) { bot.omnidrive(controller.get_x(goalDirection2/5), -1, -Output, 80); }
+      else { bot.omnidrive(0, 0, -Output, 0); }
     }
-    else
-    {
-      cycleCounter++;
-    }
-    // lack of progress factor
-    float factor = 0;
-    float factor2 = static_cast<float>(goalDirection) / 5;
-    double angle = 0;
-    if (lop.check_lop(latest_compass) && !bot.goalExists)
-    {
-      bot.motor(4, -25);
-      factor = -1.25;
-      if (!bot.goalExists) { SAdd = -std::copysign(40, bot.goalDirection2); }
-      SAdd = std::copysign(40, goalDirection);
-    }
-    else
-    {
-      SAdd = -Output;
-      lop.check_lop(latest_compass);
-    }
-    if (bot.hasBall == 1)
-    {
-      //bot.boardled(1, GRUEN);
+    else {
+        //bot.motor(4, -100);
+        // turn of leds
+        double turn = static_cast<double>(goalDirection) / 5;
+        if (cycleCounter >= 30)
+        {
+          bot.boardled(2, AUS);
+          bot.boardled(1, AUS);
+        }
+        else
+        {
+          cycleCounter++;
+        }
+        // lack of progress factor
+        float factor = 0;
+        float factor2 = static_cast<float>(goalDirection) / 5;
+        double angle = 0;
+        if (lop.check_lop(latest_compass) && !bot.goalExists)
+        {
+          bot.motor(4, -25);
+          factor = -1.25;
+          if (!bot.goalExists) { SAdd = -std::copysign(40, bot.goalDirection2); }
+          SAdd = std::copysign(40, goalDirection);
+        }
+        else
+        {
+          SAdd = -Output;
+          lop.check_lop(latest_compass);
+        }
+        if (bot.hasBall == 1)
+        {
+          //bot.boardled(1, GRUEN);
 
-      bot.omnidrive(controller.get_x(goalDirection/5), 1+factor, SAdd, 90);
-    }
-    else
-    {
-      SAdd = 0;
-      bot.motor(4, -50);
-      //bot.boardled(1, ROT);
-      const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
+          bot.omnidrive(controller.get_x(goalDirection/5), 1+factor, SAdd, 90);
+        }
+        else
+        {
+          SAdd = 0;
+          bot.motor(4, -50);
+          //bot.boardled(1, ROT);
+          const auto driveAngle = static_cast<float>(Drive.driveToBall(latest_ballDirection, bot.ballDistance, goalDirection, bot.goalDistance));
 
-      double x = 0;
-      if (bot.ballDirection < 100 && bot.ballDirection > -100 ) { x = -ballOutput; }
-      else x = controller.get_x(driveAngle);
+          double x = 0;
+          if (bot.ballDirection < 100 && bot.ballDirection > -100 ) { x = -ballOutput; }
+          else x = controller.get_x(driveAngle);
 
-      double y = 0;
-      if (bot.ballDirection > 130 || bot.ballDirection < -130) { y = controller.get_y(driveAngle) * (static_cast<double>(bot.ballDistance) / 12); }
-      else y = controller.get_y(driveAngle);
+          double y = 0;
+          if (bot.ballDirection > 130 || bot.ballDirection < -130) { y = controller.get_y(driveAngle) * (static_cast<double>(bot.ballDistance) / 12); }
+          else y = controller.get_y(driveAngle);
 
-      bot.omnidrive(x, y, -Output, 80);
+          bot.omnidrive(x, y, -Output, 80);
+        }
     }
   }
 
@@ -286,4 +293,4 @@ void loop()
     // kick(10);
   }
 }
-// pompeii end
+// pompeii end3
